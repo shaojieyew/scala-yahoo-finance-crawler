@@ -7,10 +7,10 @@ object App {
 
   def main(args: Array[String]): Unit = {
 
-    //println(getListOfStocks())
-    //println(getStockDetails())
-    //println(getStockDetails("/analysis"))
-    //println(getStockTrends())
+    println(getListOfStocks())
+    println(getStockDetails())
+    println(getStockDetails("/analysis"))
+    println(getStockTrends())
 
     def getStockTrends(): Option[Json] = {
       val symbol="GOOGL"
@@ -33,6 +33,7 @@ object App {
       var url="https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/%s"+
         "?lang=en-SG&region=SG&symbol=%s&padTimeSeries=true&type=%s"+
         "&merge=false&period1=%d&period2=%d&corsDomain=sg.finance.yahoo.com"
+
 
       val cols=income_trailing+","+income_annual+","+income_quarterly+","+balance_trailing+","+balance_annual+","+balance_quarterly+","+cashflow_trailing+","+cashflow_annual+","+cashflow_quarterly
       url = String.format(url,symbol,symbol,cols,period1,period2)

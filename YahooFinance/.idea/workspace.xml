@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="" />
+    <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/YahooFinance/Database.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/YahooFinance/App.scala" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +30,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -35,7 +44,10 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1SsiFsz7sQoVQ8mImB6trE6AQzr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.18648309" />
     <property name="project.structure.side.proportion" value="0.516129" />
@@ -57,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.YahooHistoricalTest">
+  <component name="RunManager" selected="Application.testDB">
     <configuration name="App" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="YahooFinance.App" />
       <module name="YahooFinance" />
@@ -110,38 +122,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YahooFinance [compile]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="compile" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
+    <configuration name="testDB" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="YahooFinance.testDB" />
+      <module name="YahooFinance" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="YahooFinance.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.testDB" />
         <item itemvalue="Application.YahooHistoricalTest" />
         <item itemvalue="Application.YahooHistorical" />
         <item itemvalue="Application.App" />
         <item itemvalue="Application.Util" />
-        <item itemvalue="Maven.YahooFinance [compile]" />
       </list>
     </recent_temporary>
   </component>
@@ -157,5 +157,18 @@
       <updated>1572358603991</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
