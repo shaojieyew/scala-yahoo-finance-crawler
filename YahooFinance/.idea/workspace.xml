@@ -2,11 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/YahooFinance/Database.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockSeederQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysis.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockScraper.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockTrend.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/YahooFinance/App.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/App.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/Database.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/Database.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/YahooHistorical.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistorical.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/YahooFinance/AppTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/finance/AppTest.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,9 +37,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Scala Object" />
-        <option value="Package Object" />
         <option value="Scala Class" />
+        <option value="Package Object" />
+        <option value="Scala Object" />
       </list>
     </option>
   </component>
@@ -47,7 +60,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo" />
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.18648309" />
     <property name="project.structure.side.proportion" value="0.516129" />
@@ -55,6 +68,12 @@
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="YahooFinance" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="finance.query" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -69,13 +88,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.testDB">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="YahooFinance.App" />
-      <module name="YahooFinance" />
+      <option name="MAIN_CLASS_NAME" value="finance.App" />
+      <module name="Finance" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="YahooFinance.*" />
+          <option name="PATTERN" value="finance.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -83,12 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Util" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="YahooFinance.Util" />
-      <module name="YahooFinance" />
+    <configuration name="test" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.test" />
+      <module name="Finance" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="YahooFinance.*" />
+          <option name="PATTERN" value="finance.scraper.yahoo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -96,12 +115,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YahooHistorical" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="YahooFinance.YahooHistorical" />
-      <module name="YahooFinance" />
+    <configuration name="test222" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.test222" />
+      <module name="Finance" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="YahooFinance.*" />
+          <option name="PATTERN" value="finance.scraper.yahoo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,12 +128,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="YahooHistoricalTest" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="YahooFinance.YahooHistoricalTest" />
-      <module name="YahooFinance" />
+    <configuration name="testStockProfile" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.testStockProfile" />
+      <module name="Finance" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="YahooFinance.*" />
+          <option name="PATTERN" value="finance.scraper.yahoo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -122,12 +141,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testDB" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="YahooFinance.testDB" />
-      <module name="YahooFinance" />
+    <configuration name="testing" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.testing" />
+      <module name="Finance" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="YahooFinance.*" />
+          <option name="PATTERN" value="finance.scraper.yahoo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -137,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.testDB" />
-        <item itemvalue="Application.YahooHistoricalTest" />
-        <item itemvalue="Application.YahooHistorical" />
         <item itemvalue="Application.App" />
-        <item itemvalue="Application.Util" />
+        <item itemvalue="Application.test" />
+        <item itemvalue="Application.test222" />
+        <item itemvalue="Application.testStockProfile" />
+        <item itemvalue="Application.testing" />
       </list>
     </recent_temporary>
   </component>
@@ -156,6 +175,14 @@
       <option name="presentableId" value="Default" />
       <updated>1572358603991</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added JDBC Postgres">
+      <created>1572542437493</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1572542437493</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,5 +197,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added JDBC Postgres" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added JDBC Postgres" />
   </component>
 </project>

@@ -1,4 +1,4 @@
-package YahooFinance
+package finance
 
 import org.junit._
 import Assert._
