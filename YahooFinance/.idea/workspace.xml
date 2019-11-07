@@ -2,24 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockSeederQuery.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysis.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockScraper.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockTrend.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockRating.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockRecommendation.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockEarningEstimateQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockRatingQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockRecommendationQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/App.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/Database.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/Database.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/YahooFinance/YahooHistorical.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistorical.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/YahooFinance/AppTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/finance/AppTest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysis.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockScraper.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,6 +66,7 @@
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="finance.query" />
+      <recent name="finance.model" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo" />
@@ -157,10 +153,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
-        <item itemvalue="Application.test" />
         <item itemvalue="Application.test222" />
-        <item itemvalue="Application.testStockProfile" />
         <item itemvalue="Application.testing" />
+        <item itemvalue="Application.test" />
+        <item itemvalue="Application.testStockProfile" />
       </list>
     </recent_temporary>
   </component>

@@ -1,7 +1,6 @@
 package finance
-import finance.query.{StockQuery, StockSeederQuery}
-import finance.scraper.yahoo.StockListScraper
-import finance.scraper.yahoo.StockScraper
+import finance.query.{StockEarningEstimateQuery, StockQuery, StockRatingQuery, StockRecommendationQuery, StockSeederQuery}
+import finance.scraper.yahoo.{StockAnalysisScraper, StockListScraper, StockScraper}
 object App {
 
   val UPDATE_SEEDER = false
@@ -34,6 +33,11 @@ object App {
 
   def updateStock(symbol:String){
     val stock = StockScraper.get(symbol)
-    if(StockQuery.getStock(stock.symbol).isEmpty) StockQuery.insertStock(stock) else StockQuery.updateStock(stock)
+    StockQuery.insertUpdateStock(stock)
+    stock.ratings.foreach(x => StockRatingQuery.insertStockRating(x))
+    stock.recommendations.foreach(x => StockRecommendationQuery.insertStockRecommendation(x))
+
+    val estimate_earnings = StockAnalysisScraper.get(symbol)
+    estimate_earnings.foreach(x => StockEarningEstimateQuery.insertStockEarningEstimateQuery(x))
   }
 }

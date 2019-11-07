@@ -21,6 +21,10 @@ object StockQuery extends Database{
       .option.transact(xa).unsafeRunSync
   }
 
+  def insertUpdateStock(stock: Stock): Unit ={
+    if(getStock(stock.symbol).isEmpty) insertStock(stock) else updateStock(stock)
+  }
+
   def insertStock(stock: Stock): Unit ={
     Util.printLog("insertStock, symbol=%s".format(stock.symbol))
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
@@ -43,7 +47,7 @@ object StockQuery extends Database{
 
 
   def updateStock(stock: Stock): Unit ={
-    Util.printLog("updateStockSeeder, symbol=%s".format(stock.symbol))
+    Util.printLog("updateStock, symbol=%s".format(stock.symbol))
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
     sql"""
       UPDATE finance.stock
@@ -86,6 +90,16 @@ object StockQuery extends Database{
         .update
         .run.transact(xa).unsafeRunSync
     }
+  }
+  def getAllStockSeeder(): List[StockSeeder] ={
+    Util.printLog("getAllStockSeeder")
+    sql"""
+        select symbol,src,created_timestamp,updated_timestamp from finance.stock_seeder
+        """
+      .query[StockSeeder]
+      .nel
+      .transact(xa)
+      .unsafeRunSync.toList
   }
 }
 
