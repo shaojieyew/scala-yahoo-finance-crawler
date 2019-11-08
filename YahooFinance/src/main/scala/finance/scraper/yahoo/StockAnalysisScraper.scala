@@ -4,11 +4,10 @@ import java.sql.Timestamp
 import java.text.SimpleDateFormat
 import java.time.temporal.{ChronoUnit, TemporalUnit}
 import java.time.{Instant, LocalDate, LocalDateTime, ZoneOffset}
-import java.util.TimeZone
 
 import com.jayway.jsonpath.JsonPath
 import finance.Util
-import finance.model.{StockEarningEstimate, Stock}
+import finance.model.{Stock, StockAnalysisEstimate, StockEarningEstimate, StockRevenueEstimate}
 import io.circe.{Json, parser}
 import net.minidev.json.JSONArray
 
@@ -21,9 +20,9 @@ object test222 extends App{
 
 object StockAnalysisScraper {
 
-  def get(symbol: String): List[StockEarningEstimate] =  {
+  def get(symbol: String): List[StockAnalysisEstimate] =  {
     val json = crawl(symbol)
-    parse(json.getOrElse("").toString)
+    parseRevenueEstimate(json.getOrElse("").toString) ::: parseEarningEstimate(json.getOrElse("").toString)
   }
 
   def crawl(symbol: String): Option[Json] =  {
@@ -40,9 +39,31 @@ object StockAnalysisScraper {
   }
 
 
-  def parse(json: String): List[StockEarningEstimate] = {
+  def parseRevenueEstimate(json: String): List[StockAnalysisEstimate] = {
     val symbol = JsonPath.read[String](json, "$.quoteType.symbol")
-    var list: List[StockEarningEstimate] = List()
+    var list: List[StockAnalysisEstimate] = List()
+    JsonPath.read[JSONArray](json, "$.earningsTrend.trend").forEach(trend =>{
+      val endDate = Option(JsonPath.read[String](trend, "$.endDate"))
+      if(endDate.nonEmpty){
+        val sdf = new SimpleDateFormat("yyyy-MM-dd")
+        val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond(sdf.parse(endDate.get).getTime/1000L,0, ZoneOffset.UTC))
+        val estDate = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS))
+        val period=  JsonPath.read(trend, "$.period").toString.takeRight(1)
+        val avg = JsonPath.read(trend, "$.revenueEstimate.avg.raw").toString.toLong
+        val low = JsonPath.read(trend, "$.revenueEstimate.low.raw").toString.toLong
+        val high = JsonPath.read(trend, "$.revenueEstimate.high.raw").toString.toLong
+        val no_of_analysis = JsonPath.read(trend, "$.revenueEstimate.numberOfAnalysts.raw").toString.toInt
+        val growth = JsonPath.read(trend, "$.revenueEstimate.growth.raw").toString.toFloat
+
+        list=list.appended(StockRevenueEstimate(symbol ,estDate, period, date, avg, low, high, no_of_analysis, growth))
+      }
+    })
+    list
+  }
+
+  def parseEarningEstimate(json: String): List[StockAnalysisEstimate] = {
+    val symbol = JsonPath.read[String](json, "$.quoteType.symbol")
+    var list: List[StockAnalysisEstimate] = List()
     JsonPath.read[JSONArray](json, "$.earningsTrend.trend").forEach(trend =>{
       val endDate = Option(JsonPath.read[String](trend, "$.endDate"))
       if(endDate.nonEmpty){
@@ -74,7 +95,6 @@ object StockAnalysisScraper {
         list=list.appended(StockEarningEstimate(symbol,estDate90, period, date  , avg90, low, high, no_of_analysis, growth))
       }
     })
-
     list
   }
 }
