@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockPriceQuery.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockRevenueEstimateQuery.scala" afterDir="false" />
+    <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockEstimate.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockFinance.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockHistorical.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockBalanceQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockCashFlowQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockDividendQuery.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockIncomeQuery.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/finance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistorical.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistorical.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockPriceQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockPriceQuery.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistorical.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistoricalScraper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockTrend.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockFinanceScraper.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,8 +112,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.test" />
+    <configuration name="test222" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.test222" />
       <module name="Finance" />
       <extension name="coverage">
         <pattern>
@@ -118,8 +125,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test222" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.test222" />
+    <configuration name="testStockTrend" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.testStockTrend" />
       <module name="Finance" />
       <extension name="coverage">
         <pattern>
@@ -147,10 +154,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.testStockTrend" />
         <item itemvalue="Application.StockHistoricalTest" />
         <item itemvalue="Application.test222" />
         <item itemvalue="Application.testing" />
-        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -179,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573144504351</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation">
+      <created>1573237153700</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1573237153700</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -198,6 +212,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added JDBC Postgres" />
     <MESSAGE value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query" />
+    <MESSAGE value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation" />
   </component>
 </project>

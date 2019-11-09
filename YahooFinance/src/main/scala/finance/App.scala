@@ -1,5 +1,5 @@
 package finance
-import finance.model.{StockHistoricalData, StockPrice, StockPriceHistoricalData}
+import finance.model.{StockDividendHistorical, StockFinance, StockHistorical, StockPrice, StockPriceHistorical}
 import finance.query.{StockEarningEstimateQuery, StockQuery, StockRatingQuery, StockRecommendationQuery, StockSeederQuery}
 import finance.scraper.yahoo.{StockAnalysisScraper, StockListScraper, StockScraper}
 object App {
@@ -41,6 +41,8 @@ object App {
     val estimate_earnings_rev = StockAnalysisScraper.get(symbol)
     estimate_earnings_rev.foreach(x => x.insertStockEstimateQuery())
 
-    StockPriceHistoricalData.insertStockHistoricalData(symbol)
+    StockPriceHistorical.insertStockHistoricalData(symbol)
+    StockDividendHistorical.insertStockHistoricalData(symbol)
+    StockFinance.insertUpdateStockFinance(symbol)
   }
 }

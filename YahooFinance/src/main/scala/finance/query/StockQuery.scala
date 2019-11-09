@@ -22,7 +22,8 @@ object StockQuery extends Database{
   }
 
   def insertUpdateStock(stock: Stock): Unit ={
-    if(getStock(stock.symbol).isEmpty) insertStock(stock) else updateStock(stock)
+    insertStock(stock)
+    // if(getStock(stock.symbol).isEmpty) insertStock(stock) else updateStock(stock)
   }
 
   def insertStock(stock: Stock): Unit ={
@@ -37,7 +38,17 @@ object StockQuery extends Database{
       ${stock.market}, ${stock.exchange}, ${stock.website},${stock.description},
       ${stock.quote_type}, ${stock.exchange_timezone_name},
       ${stock.is_esg_populated}, ${stock.is_tradeable},
-      ${now}, ${now});
+      ${now}, ${now})
+
+      ON CONFLICT (symbol)
+      DO
+      UPDATE
+      SET name=${stock.name}, industry=${stock.industry}, sector=${stock.sector},
+      country=${stock.country}, market=${stock.market},
+      exchange=${stock.exchange}, website=${stock.website}, description=${stock.description},
+      quote_type=${stock.quote_type}, exchange_timezone_name=${stock.exchange_timezone_name},
+      is_esg_populated=${stock.is_esg_populated}, is_tradeable=${stock.is_tradeable},
+      updated_timestamp=$now
         """
       .update
       .run.transact(xa).unsafeRunSync

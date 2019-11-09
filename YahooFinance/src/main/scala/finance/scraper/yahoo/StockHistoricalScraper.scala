@@ -7,7 +7,7 @@ import java.time.{LocalDateTime, ZoneOffset}
 import java.util.{Date, TimeZone}
 
 import finance.Util
-import finance.model.StockPrice
+import finance.model.{StockDividend, StockPrice}
 
 import scala.scalajs.niocharset.StandardCharsets
 import scala.util.matching.Regex
@@ -15,7 +15,8 @@ import scala.util.matching.Regex
 object StockHistoricalTest extends App{
   var yahooHistorical = new StockHistoricalScraper("G3B.SI")
   //println(yahooHistorical.getDividends())
-  yahooHistorical.getHistorical()
+  //yahooHistorical.getHistorical()
+  yahooHistorical.getDividends()
   //println(yahooHistorical.getSplits())
 }
 
@@ -25,7 +26,6 @@ class StockHistoricalScraper(symbol: String, start: Array[Int]=Array(1976,1,1), 
   val (crumb, cookies)=getCrumb(symbol)
   val sdf = new SimpleDateFormat("yyyy-MM-dd")
   sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
-  println(start(0)+"-"+start(1)+"-"+start(2))
   val start_dt = sdf.parse(start(0)+"-"+start(1)+"-"+start(2))
   val start_epoch = start_dt.getTime/1000L
 
@@ -76,7 +76,40 @@ class StockHistoricalScraper(symbol: String, start: Array[Int]=Array(1976,1,1), 
     getData("split")
   }
 
+  def getDividends(): List[StockDividend] ={
+    Util.printLog("StockHistorical: scrapping StockDividend")
+    if (Array("1d","1wk","1mo").filter( _.toUpperCase() == interval.toUpperCase()).length==0)
+      throw new Exception("Incorrect interval: valid intervals are 1d, 1wk, 1mo")
+    val url = api_url.format(symbol,start_epoch,end_epoch,interval,"div",crumb)
+    Util.printLog(url)
+    val data = requests.get(url,cookies = Map("B"->new HttpCookie("B",cookies.getOrElse("B","").toString.drop(2))))
+    var lineCount =0
+    var list = List[StockDividend] ()
+    var cols = List[String]()
+    val result =  new String(data.contents, StandardCharsets.UTF_8)
+    result.split("\\R+").foreach(line=>{
+      lineCount = lineCount +1
+      if (lineCount==1){
+        cols = line.split(",").toList
+      }else{
+        try {
+          val values = line.split(",")
+          val dividend = values(cols.indexOf("Dividends")).toFloat
+          val sdf = new SimpleDateFormat("yyyy-MM-dd")
+          val dividend_date = values(cols.indexOf("Date"))
+          val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond(sdf.parse(dividend_date).getTime / 1000L, 0, ZoneOffset.of("+08:00")))
+          list = list.appended(StockDividend(symbol, dividend, date))
+
+        }catch{
+          case e: Exception => {}
+        }
+      }
+    })
+    list
+  }
+
   def getHistorical(): List[StockPrice] ={
+    Util.printLog("StockHistorical: scrapping StockPrice")
     if (Array("1d","1wk","1mo").filter( _.toUpperCase() == interval.toUpperCase()).length==0)
       throw new Exception("Incorrect interval: valid intervals are 1d, 1wk, 1mo")
     val url = api_url.format(symbol,start_epoch,end_epoch,interval,"history",crumb)
@@ -85,8 +118,7 @@ class StockHistoricalScraper(symbol: String, start: Array[Int]=Array(1976,1,1), 
     var lineCount =0
     var list = List[StockPrice] ()
     var cols = List[String]()
-      val result =  new String(data.contents, StandardCharsets.UTF_8)
-    Util.printLog(result)
+    val result =  new String(data.contents, StandardCharsets.UTF_8)
     result.split("\\R+").foreach(line=>{
       lineCount = lineCount +1
       if (lineCount==1){

@@ -38,8 +38,13 @@ object StockPriceQuery extends Database{
     sql"""
     INSERT INTO finance.stock_price(
             stock, open, high, low, close, adj_close, vol, date)
-    VALUES (${stockPrice.stock}, ${stockPrice.open}, ${stockPrice.high}, ${stockPrice.low}, ${stockPrice.close}, ${stockPrice.adj_close}, ${stockPrice.vol}, ${stockPrice.date});
-        """
+    VALUES (${stockPrice.stock}, ${stockPrice.open}, ${stockPrice.high}, ${stockPrice.low}, ${stockPrice.close}, ${stockPrice.adj_close}, ${stockPrice.vol}, ${stockPrice.date})
+    ON CONFLICT (stock, date)
+    DO
+      UPDATE
+      SET open = ${stockPrice.open}, high = ${stockPrice.high}, low = ${stockPrice.low},
+      close = ${stockPrice.close}, adj_close = ${stockPrice.adj_close}, vol = ${stockPrice.vol};
+      """
       .update
       .run.transact(xa).unsafeRunSync
   }
