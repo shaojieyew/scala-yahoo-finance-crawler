@@ -84,6 +84,12 @@
       <artifactId>json-path</artifactId>
       <version>2.4.0</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/com.lihaoyi/upickle -->
+    <dependency>
+      <groupId>com.lihaoyi</groupId>
+      <artifactId>upickle_sjs0.6_2.13</artifactId>
+      <version>0.8.0</version>
+    </dependency>
 
   </dependencies>
 

@@ -9,16 +9,16 @@ trait StockAnalysisEstimate{
 }
 case class StockRevenueEstimate(stock: String,est_date: Timestamp,
                                 period: String, end_date: Timestamp,
-                                est_avg: Long, est_low: Long, est_high: Long,
-                                no_analyst: Int, growth: Float) extends StockAnalysisEstimate{
+                                est_avg:  Option[Long], est_low: Option[Long], est_high: Option[Long],
+                                no_analyst:  Option[Int], growth: Option[Float]) extends StockAnalysisEstimate{
   def insertStockEstimateQuery(): Unit ={
     StockRevenueEstimateQuery.insertStockRevenueEstimateQuery(this)
   }
 }
 case class StockEarningEstimate(stock: String, est_date: Timestamp,
                                 period: String, end_date: Timestamp,
-                                est_avg: Float, est_low: Float, est_high: Float,
-                                no_analyst: Int, growth: Float) extends StockAnalysisEstimate{
+                                est_avg:  Option[Float], est_low: Option[Float], est_high: Option[Float],
+                                no_analyst:  Option[Int], growth: Option[Float]) extends StockAnalysisEstimate{
   def insertStockEstimateQuery(): Unit ={
     StockEarningEstimateQuery.insertStockEarningEstimateQuery(this)
   }

@@ -15,7 +15,7 @@ import scala.util.matching.Regex
 
 
 object test222 extends App{
-  StockAnalysisScraper.get("GOOGL")
+  StockAnalysisScraper.get("AAPL")
 }
 
 object StockAnalysisScraper {
@@ -42,52 +42,71 @@ object StockAnalysisScraper {
   def parseRevenueEstimate(json: String): List[StockAnalysisEstimate] = {
     val symbol = JsonPath.read[String](json, "$.quoteType.symbol")
     var list: List[StockAnalysisEstimate] = List()
-    JsonPath.read[JSONArray](json, "$.earningsTrend.trend").forEach(trend =>{
-      val endDate = Option(JsonPath.read[String](trend, "$.endDate"))
-      if(endDate.nonEmpty){
-        val sdf = new SimpleDateFormat("yyyy-MM-dd")
-        val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond(sdf.parse(endDate.get).getTime/1000L,0, ZoneOffset.UTC))
-        val estDate = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS))
-        val period=  JsonPath.read(trend, "$.period").toString.takeRight(1)
-        val avg = JsonPath.read(trend, "$.revenueEstimate.avg.raw").toString.toLong
-        val low = JsonPath.read(trend, "$.revenueEstimate.low.raw").toString.toLong
-        val high = JsonPath.read(trend, "$.revenueEstimate.high.raw").toString.toLong
-        val no_of_analysis = JsonPath.read(trend, "$.revenueEstimate.numberOfAnalysts.raw").toString.toInt
-        val growth = JsonPath.read(trend, "$.revenueEstimate.growth.raw").toString.toFloat
 
-        list=list.appended(StockRevenueEstimate(symbol ,estDate, period, date, avg, low, high, no_of_analysis, growth))
-      }
-    })
+
+    parser.parse(json).getOrElse(Json.Null).hcursor
+       .downField("earningsTrend")
+       .downField("trend").focus.get.asArray.get.foreach(rec=>{
+       val endDate = rec.hcursor.get[String]("endDate")
+       if(endDate.toOption.nonEmpty) {
+         val sdf = new SimpleDateFormat("yyyy-MM-dd")
+         val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond((sdf.parse(endDate.getOrElse("")).getTime) / 1000L, 0, ZoneOffset.of("+08:00")))
+         val estDate = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS))
+         val period = rec.hcursor.get[String]("period").getOrElse("-").takeRight(1)
+         val avg = rec.hcursor.downField("revenueEstimate").downField("avg").get[Long]("raw").toOption
+         val low = rec.hcursor.downField("revenueEstimate").downField("low").get[Long]("raw").toOption
+         val high = rec.hcursor.downField("revenueEstimate").downField("high").get[Long]("raw").toOption
+         val no_of_analysis = rec.hcursor.downField("revenueEstimate").downField("numberOfAnalysts").get[Int]("raw").toOption
+         val growth = rec.hcursor.downField("revenueEstimate").downField("growth").get[Float]("raw").toOption
+
+         /*
+          println(date)
+         println(estDate)
+         println(period)
+         println(avg)
+         println(low)
+         println(high)
+         println(no_of_analysis)
+         println(growth)
+          */
+         list=list.appended(StockRevenueEstimate(symbol ,estDate, period, date, avg, low, high, no_of_analysis, growth))
+
+       }
+       })
     list
   }
 
   def parseEarningEstimate(json: String): List[StockAnalysisEstimate] = {
     val symbol = JsonPath.read[String](json, "$.quoteType.symbol")
     var list: List[StockAnalysisEstimate] = List()
-    JsonPath.read[JSONArray](json, "$.earningsTrend.trend").forEach(trend =>{
-      val endDate = Option(JsonPath.read[String](trend, "$.endDate"))
-      if(endDate.nonEmpty){
+    parser.parse(json).getOrElse(Json.Null).hcursor
+      .downField("earningsTrend")
+      .downField("trend").focus.get.asArray.get.foreach(rec=>{
+      val endDate = rec.hcursor.get[String]("endDate")
+      if(endDate.toOption.nonEmpty) {
+        val sdf = new SimpleDateFormat("yyyy-MM-dd")
+        val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond((sdf.parse(endDate.getOrElse("")).getTime) / 1000L, 0, ZoneOffset.of("+08:00")))
         val estDate = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS))
-        val period=  JsonPath.read(trend, "$.period").toString.takeRight(1)
-        val avg = JsonPath.read(trend, "$.earningsEstimate.avg.raw").toString.toFloat
-        val low = JsonPath.read(trend, "$.earningsEstimate.low.raw").toString.toFloat
-        val high = JsonPath.read(trend, "$.earningsEstimate.high.raw").toString.toFloat
-        val no_of_analysis = JsonPath.read(trend, "$.earningsEstimate.numberOfAnalysts.raw").toString.toInt
-        val growth = JsonPath.read(trend, "$.earningsEstimate.growth.raw").toString.toFloat
+        val period = rec.hcursor.get[String]("period").getOrElse("-").takeRight(1)
+        val avg = rec.hcursor.downField("earningsEstimate").downField("avg").get[Float]("raw").toOption
+        val low = rec.hcursor.downField("earningsEstimate").downField("low").get[Float]("raw").toOption
+        val high = rec.hcursor.downField("earningsEstimate").downField("high").get[Float]("raw").toOption
+        val no_of_analysis = rec.hcursor.downField("earningsEstimate").downField("numberOfAnalysts").get[Int]("raw").toOption
+        val growth = rec.hcursor.downField("earningsEstimate").downField("growth").get[Float]("raw").toOption
 
         val estDate7 = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS).minusDays(7))
-        val avg7 = JsonPath.read(trend, "$.epsTrend.7daysAgo.raw").toString.toFloat
+        val avg7 =rec.hcursor.downField("epsTrend").downField("7daysAgo").get[Float]("raw").toOption
+
 
         val estDate30 = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS).minusDays(30))
-        val avg30 = JsonPath.read(trend, "$.epsTrend.30daysAgo.raw").toString.toFloat
+        val avg30 =rec.hcursor.downField("epsTrend").downField("30daysAgo").get[Float]("raw").toOption
 
         val estDate60 = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS).minusDays(60))
-        val avg60 = JsonPath.read(trend, "$.epsTrend.60daysAgo.raw").toString.toFloat
+        val avg60 =rec.hcursor.downField("epsTrend").downField("60daysAgo").get[Float]("raw").toOption
 
         val estDate90 = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS).minusDays(90))
-        val avg90 = JsonPath.read(trend, "$.epsTrend.90daysAgo.raw").toString.toFloat
-        val sdf = new SimpleDateFormat("yyyy-MM-dd")
-        val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond(sdf.parse(endDate.get).getTime/1000L,0, ZoneOffset.UTC))
+        val avg90 =rec.hcursor.downField("epsTrend").downField("90daysAgo").get[Float]("raw").toOption
+
         list=list.appended(StockEarningEstimate(symbol,estDate, period, date  , avg, low, high, no_of_analysis, growth))
         list=list.appended(StockEarningEstimate(symbol,estDate7, period, date  , avg7, low, high, no_of_analysis, growth))
         list=list.appended(StockEarningEstimate(symbol,estDate30, period, date  , avg30, low, high, no_of_analysis, growth))

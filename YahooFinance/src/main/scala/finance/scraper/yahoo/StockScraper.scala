@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit
 import java.time.{LocalDateTime, ZoneOffset}
 
 import com.jayway.jsonpath.JsonPath
+import com.sun.xml.internal.bind.v2.TODO
 import finance.Util
 import finance.model.{Stock, StockRating, StockRecommendation}
 import io.circe.{Json, parser}
@@ -13,7 +14,7 @@ import net.minidev.json.JSONArray
 import scala.util.matching.Regex
 
 object testing extends App{
-  StockScraper.get("GOOGL")
+  StockScraper.get("AAPL")
 }
 
 object StockScraper {
@@ -37,23 +38,20 @@ object StockScraper {
   }
 
   private def parse(json: String): Stock = {
-
-    //Stock details
-    val symbol = JsonPath.read[String](json, "$.quoteType.symbol")
-    val name = JsonPath.read[String](json, "$.quoteType.shortName")
-    val industry = JsonPath.read[String](json, "$.summaryProfile.industry")
-    val sector = JsonPath.read[String](json, "$.summaryProfile.sector")
-    val country = JsonPath.read[String](json, "$.summaryProfile.country")
-    val market = JsonPath.read[String](json, "$.quoteType.market")
-    val exchange = JsonPath.read[String](json, "$.quoteType.exchange")
-    val website = JsonPath.read[String](json, "$.summaryProfile.website")
-    val full_time_employees = JsonPath.read[Int](json, "$.summaryProfile.fullTimeEmployees")
-    val description = JsonPath.read[String](json, "$.summaryProfile.longBusinessSummary")
-    val quote_type = JsonPath.read[String](json, "$.quoteType.quoteType")
-    val exchange_timezone_name = JsonPath.read[String](json, "$.quoteType.exchangeTimezoneName")
-    val is_esg_populated = JsonPath.read[Boolean](json, "$.quoteType.isEsgPopulated")
-    val is_tradeable = JsonPath.read[Boolean](json, "$.summaryDetail.tradeable")
-
+    val symbol = JsonPath.read(json, "$.quoteType.symbol").toString
+    val name = JsonPath.read(json, "$.quoteType.shortName").toString
+    val industry = JsonPath.read(json, "$.summaryProfile.industry").toString
+    val sector = JsonPath.read(json, "$.summaryProfile.sector").toString
+    val country = JsonPath.read(json, "$.summaryProfile.country").toString
+    val market = JsonPath.read(json, "$.quoteType.market").toString
+    val exchange = JsonPath.read(json, "$.quoteType.exchange").toString
+    val website = JsonPath.read(json, "$.summaryProfile.website").toString
+    val full_time_employees = JsonPath.read(json, "$.summaryProfile.fullTimeEmployees").toString.toInt
+    val description = JsonPath.read(json, "$.summaryProfile.longBusinessSummary").toString
+    val quote_type = JsonPath.read(json, "$.quoteType.quoteType").toString
+    val exchange_timezone_name = JsonPath.read(json, "$.quoteType.exchangeTimezoneName").toString
+    val is_esg_populated = JsonPath.read(json, "$.quoteType.isEsgPopulated").toString.toBoolean
+    val is_tradeable = JsonPath.read(json, "$.summaryDetail.tradeable").toString.toBoolean
     val stock =
       Stock(symbol, name, industry, sector,
         country, market, exchange, website,
@@ -75,7 +73,7 @@ object StockScraper {
       }
     )
 
-
+    //TODO, change to option to remove single quote'' empty data
     //Stock ratings
     val stock_recommendations = JsonPath.read[JSONArray](json, "$.recommendationTrend.trend")
     stock_recommendations.forEach(
