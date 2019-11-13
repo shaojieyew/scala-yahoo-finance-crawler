@@ -35,7 +35,7 @@ object StockFinanceScraper {
     url = url.format(symbol, symbol, params, period1, period2)
 
     val r = requests.get(url)
-    Util.printLog("getStockTrends url=%s".format(r.url))
+    Util.printLog("StockFinanceScraper getStockTrends url=%s".format(r.url))
     val json = Option(parser.parse(r.text).getOrElse(Json.Null))
     //println(json)
     if (json.nonEmpty) {

@@ -4,8 +4,8 @@ import java.sql.Timestamp
 import java.time.{LocalDateTime, ZoneOffset}
 
 import finance.Util
-import finance.query.{StockDividendQuery, StockEarningEstimateQuery, StockPriceQuery, StockRevenueEstimateQuery}
-import finance.scraper.yahoo.StockHistoricalScraper
+import finance.query.{StockDividendQuery, StockEarningEstimateQuery, StockPriceQuery, StockQuery, StockRatingQuery, StockRecommendationQuery, StockRevenueEstimateQuery}
+import finance.scraper.yahoo.{StockHistoricalScraper, StockScraper}
 
 case class Stock(symbol: String,
                  name: Option[String],
@@ -27,3 +27,11 @@ case class Stock(symbol: String,
 
 }
 
+object Stock{
+  def insertStockDetails(symbol:String): Unit ={
+    val stock = StockScraper.get(symbol)
+    StockQuery.insertUpdateStock(stock)
+    stock.ratings.foreach(x => StockRatingQuery.insertStockRating(x))
+    stock.recommendations.foreach(x => StockRecommendationQuery.insertStockRecommendation(x))
+  }
+}

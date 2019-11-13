@@ -27,7 +27,7 @@ object StockScraper {
   private def crawl(symbol: String): Option[Json] =  {
     val url = "https://sg.finance.yahoo.com/quote/%s?p=%s".format(symbol, symbol)
     val r=requests.get(url)
-    Util.printLog("getStockDetails url=%s".format(r.url))
+    Util.printLog("StockScraper getStockDetails url=%s".format(r.url))
 
     val pattern = new Regex("root\\.App\\.main.*}}}};")
     var patternHit = (pattern findFirstIn r.text).getOrElse("")

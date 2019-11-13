@@ -92,7 +92,7 @@ object StockQuery extends Database{
   def insertCompanySize(stock: Stock, now: Timestamp): Unit ={
     val company_size=getCompanySize(stock.symbol)
     if(stock.full_time_employees.nonEmpty &&
-    (company_size.isEmpty || (company_size.nonEmpty && company_size.get!=stock.full_time_employees))){
+    (company_size.isEmpty || (company_size.nonEmpty && company_size.get!=stock.full_time_employees.get))){
       Util.printLog("StockQuery insertCompanySize, symbol=%s, size=%s".format(stock.symbol,company_size.toString))
       sql"""
       INSERT INTO finance.stock_company_size(

@@ -2,17 +2,31 @@ package finance.scraper.yahoo
 
 import finance.Util
 
+import scala.io.Source
 import scala.util.matching.Regex
 
 object StockListScraper {
-  val STOCKS_SG = "https://sg.finance.yahoo.com/screener/unsaved/9acb0a49-73de-425c-abe3-5a50943d8418"
-  val STOCKS_US = "https://sg.finance.yahoo.com/screener/unsaved/a0c769a9-36ee-4e52-948e-49983db91cfc"
-  val STOCKS_SG_US = "  https://sg.finance.yahoo.com/screener/unsaved/a06bc07d-799c-4a99-b9bc-6c90c23d1776"
-  val STOCKS_UNDERVALUED_LARGE_CAPS = "https://sg.finance.yahoo.com/screener/predefined/undervalued_large_caps"
 
+
+
+  def main(args: Array[String]): Unit = {
+    //println (getYahooFinance("https://sg.finance.yahoo.com/screener/350511a6-ba9b-40cd-8814-1e1c807ad371").foreach(println(_)))
+    println(getCsv("Data/Listing/SGX.csv"))
+  }
+  def getCsv(url: String): List[String] ={
+    val bufferedSource = Source.fromFile(url)
+    val symbols = for (line <- bufferedSource.getLines) yield "%s.SI".format(line.split(",")(1))
+    val list = symbols.toList.drop(1)
+    bufferedSource.close
+    list
+  }
+
+  def get(url: String): List[String] = {
+    getCsv(url)
+  }
   @throws(classOf[requests.UnknownHostException])
   @throws(classOf[Exception])
-  def get(url: String): List[String] = {
+  def getYahooFinance(url: String): List[String] = {
     var res: List[String] = List()
     var count = 0
     val pattern = new Regex("<a href=\\\"/quote/[a-zA-Z-\\.]*\\?p=[a-zA-Z\\-\\.]*\\\" title=\\\"")
@@ -31,4 +45,5 @@ object StockListScraper {
     }
     res
   }
+
 }

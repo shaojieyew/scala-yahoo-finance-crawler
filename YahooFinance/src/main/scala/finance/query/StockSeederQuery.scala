@@ -41,22 +41,15 @@ object StockSeederQuery extends Database{
     sql"""
        insert into finance.stock_seeder (symbol,src,created_timestamp,updated_timestamp)
        values ($symbol, $src, $now, $now)
+       ON CONFLICT (symbol, src)
+    DO
+    update
+     set updated_timestamp = $now
         """
       .update
       .run.transact(xa).unsafeRunSync
   }
 
-
-  def updateStockSeeder(symbol: String, src: String): Unit ={
-    Util.printLog("StockSeederQuery updateStockSeeder, symbol=%s, src=%s".format(symbol, src))
-    val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
-    sql"""
-       update finance.stock_seeder set updated_timestamp = $now
-       where symbol = $symbol and src = $src
-        """
-      .update
-      .run.transact(xa).unsafeRunSync
-  }
 
   def deleteStockSeeder(symbol: String, src: String): Unit ={
     Util.printLog("StockSeederQuery deleteStockSeeder, symbol=%s, src=%s".format(symbol, src))

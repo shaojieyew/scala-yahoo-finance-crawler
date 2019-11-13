@@ -77,11 +77,10 @@ class StockHistoricalScraper(symbol: String, start: Array[Int]=Array(1976,1,1), 
   }
 
   def getDividends(): List[StockDividend] ={
-    Util.printLog("StockHistorical: scrapping StockDividend")
     if (Array("1d","1wk","1mo").filter( _.toUpperCase() == interval.toUpperCase()).length==0)
       throw new Exception("Incorrect interval: valid intervals are 1d, 1wk, 1mo")
     val url = api_url.format(symbol,start_epoch,end_epoch,interval,"div",crumb)
-    Util.printLog(url)
+    Util.printLog("StockHistorical scrapping StockDividend url=%s".format(url))
     val data = requests.get(url,cookies = Map("B"->new HttpCookie("B",cookies.getOrElse("B","").toString.drop(2))))
     var lineCount =0
     var list = List[StockDividend] ()
@@ -109,11 +108,10 @@ class StockHistoricalScraper(symbol: String, start: Array[Int]=Array(1976,1,1), 
   }
 
   def getHistorical(): List[StockPrice] ={
-    Util.printLog("StockHistorical: scrapping StockPrice")
     if (Array("1d","1wk","1mo").filter( _.toUpperCase() == interval.toUpperCase()).length==0)
       throw new Exception("Incorrect interval: valid intervals are 1d, 1wk, 1mo")
     val url = api_url.format(symbol,start_epoch,end_epoch,interval,"history",crumb)
-    Util.printLog(url)
+    Util.printLog("StockHistorical scrapping StockPrice url=%s".format(url))
     val data = requests.get(url,cookies = Map("B"->new HttpCookie("B",cookies.getOrElse("B","").toString.drop(2))))
     var lineCount =0
     var list = List[StockPrice] ()
