@@ -7,7 +7,7 @@ import finance.model.{StockBalance, StockIncome}
 object StockBalanceQuery extends Database{
 
   def insertStockFinanceBalance(stockBalance: StockBalance): Unit ={
-    Util.printLog("insertStockFinanceBalance, symbol=%s, date=%s".format(stockBalance.stock, stockBalance.date))
+    Util.printLog("StockBalanceQuery insertStockFinanceBalance, symbol=%s, date=%s".format(stockBalance.stock, stockBalance.date))
     sql"""
 
 INSERT INTO finance.stock_company_bal(

@@ -14,14 +14,14 @@ import net.minidev.json.JSONArray
 import scala.util.matching.Regex
 
 object testing extends App{
-  StockScraper.get("AAPL")
+  StockScraper.get("C92.SI")
 }
 
 object StockScraper {
 
   def get(symbol: String): Stock =  {
     val json = crawl(symbol)
-    parse(json.getOrElse("").toString)
+    parse(json.getOrElse("").toString, symbol)
   }
 
   private def crawl(symbol: String): Option[Json] =  {
@@ -37,21 +37,22 @@ object StockScraper {
       .downField("stores").downField("QuoteSummaryStore").focus
   }
 
-  private def parse(json: String): Stock = {
-    val symbol = JsonPath.read(json, "$.quoteType.symbol").toString
-    val name = JsonPath.read(json, "$.quoteType.shortName").toString
-    val industry = JsonPath.read(json, "$.summaryProfile.industry").toString
-    val sector = JsonPath.read(json, "$.summaryProfile.sector").toString
-    val country = JsonPath.read(json, "$.summaryProfile.country").toString
-    val market = JsonPath.read(json, "$.quoteType.market").toString
-    val exchange = JsonPath.read(json, "$.quoteType.exchange").toString
-    val website = JsonPath.read(json, "$.summaryProfile.website").toString
-    val full_time_employees = JsonPath.read(json, "$.summaryProfile.fullTimeEmployees").toString.toInt
-    val description = JsonPath.read(json, "$.summaryProfile.longBusinessSummary").toString
-    val quote_type = JsonPath.read(json, "$.quoteType.quoteType").toString
-    val exchange_timezone_name = JsonPath.read(json, "$.quoteType.exchangeTimezoneName").toString
-    val is_esg_populated = JsonPath.read(json, "$.quoteType.isEsgPopulated").toString.toBoolean
-    val is_tradeable = JsonPath.read(json, "$.summaryDetail.tradeable").toString.toBoolean
+  private def parse(jsonString: String, symbol: String): Stock = {
+    val json: Json = parser.parse(jsonString).getOrElse(Json.Null)
+    val name = json.hcursor.downField("quoteType").get[String]("shortName").toOption
+    val industry = json.hcursor.downField("summaryProfile").get[String]("industry").toOption
+    val sector = json.hcursor.downField("summaryProfile").get[String]("sector").toOption
+    val country = json.hcursor.downField("summaryProfile").get[String]("country").toOption
+    val market = json.hcursor.downField("quoteType").get[String]("market").toOption
+    val exchange = json.hcursor.downField("quoteType").get[String]("exchange").toOption
+    val website = json.hcursor.downField("summaryProfile").get[String]("website").toOption
+    val full_time_employees = json.hcursor.downField("summaryProfile").get[Int]("fullTimeEmployees").toOption
+    val description = json.hcursor.downField("summaryProfile").get[String]("longBusinessSummary").toOption
+    val quote_type = json.hcursor.downField("quoteType").get[String]("quoteType").toOption
+    val exchange_timezone_name = json.hcursor.downField("quoteType").get[String]("exchangeTimezoneName").toOption
+    val is_esg_populated = json.hcursor.downField("quoteType").get[Boolean]("isEsgPopulated").toOption
+    val is_tradeable = json.hcursor.downField("summaryDetail").get[Boolean]("tradeable").toOption
+
     val stock =
       Stock(symbol, name, industry, sector,
         country, market, exchange, website,
@@ -60,36 +61,44 @@ object StockScraper {
       )
 
     //Stock ratings
-    val rating_histories = JsonPath.read[JSONArray](json, "$.upgradeDowngradeHistory.history")
-    rating_histories.forEach(
-      rating_history=>{
-        val epochGradeDate = JsonPath.read[Int](rating_history, "$.epochGradeDate")
-        val graded_timestamp = Timestamp.valueOf(LocalDateTime.ofEpochSecond(epochGradeDate,0, ZoneOffset.UTC))
-        val firm = JsonPath.read[String](rating_history, "$.firm")
-        val to_grade = JsonPath.read[String](rating_history, "$.toGrade")
-        val from_grade = JsonPath.read[String](rating_history, "$.fromGrade")
-        val action = JsonPath.read[String](rating_history, "$.action")
-        stock.ratings=stock.ratings.appended( StockRating(symbol, firm,from_grade,to_grade, action,graded_timestamp) )
-      }
-    )
+
+    if(json.hcursor.downField("upgradeDowngradeHistory").downField("history").focus.nonEmpty) {
+      json.hcursor.downField("upgradeDowngradeHistory").downField("history").focus.get.asArray.get.foreach(
+        rating_history => {
+          //println(rating_history)
+          val epochGradeDate = rating_history.hcursor.get[Long]("epochGradeDate").toOption
+          val graded_timestamp = Timestamp.valueOf(LocalDateTime.ofEpochSecond(epochGradeDate.getOrElse(0), 0, ZoneOffset.UTC))
+          val firm = rating_history.hcursor.get[String]("firm").toOption
+          val to_grade = rating_history.hcursor.get[String]("toGrade").toOption
+          val from_grade = rating_history.hcursor.get[String]("fromGrade").toOption
+          val action = rating_history.hcursor.get[String]("action").toOption
+          stock.ratings = stock.ratings.appended(StockRating(symbol, firm, from_grade, to_grade, action, graded_timestamp))
+        }
+      )
+    }
 
     //TODO, change to option to remove single quote'' empty data
     //Stock ratings
-    val stock_recommendations = JsonPath.read[JSONArray](json, "$.recommendationTrend.trend")
-    stock_recommendations.forEach(
-      stock_recommendation=>{
-        val strongBuy = JsonPath.read[Int](stock_recommendation, "$.strongBuy")
-        val buy = JsonPath.read[Int](stock_recommendation, "$.buy")
-        val hold = JsonPath.read[Int](stock_recommendation, "$.hold")
-        val sell = JsonPath.read[Int](stock_recommendation, "$.sell")
-        val strongSell = JsonPath.read[Int](stock_recommendation, "$.strongSell")
-        val period = JsonPath.read[String](stock_recommendation, "$.period").filter(_.isDigit).toInt
-        import java.time.LocalDate
-        val firstOfMonth = LocalDate.now.withDayOfMonth(1).atStartOfDay(ZoneOffset.UTC).toEpochSecond
-        val recommended_timestamp = Timestamp.valueOf(LocalDateTime.ofEpochSecond(firstOfMonth,0, ZoneOffset.UTC).minusMonths(period))
-        stock.recommendations=stock.recommendations.appended( StockRecommendation(symbol, strongBuy,buy,hold, sell,strongSell,recommended_timestamp) )
-      }
-    )
+    if(json.hcursor.downField("recommendationTrend").downField("trend").focus.nonEmpty){
+      json.hcursor.downField("recommendationTrend").downField("trend").focus.get.asArray.get.foreach(
+        stock_recommendation=>{
+
+          val strongBuy = stock_recommendation.hcursor.get[Int]("strongBuy").toOption
+          val buy = stock_recommendation.hcursor.get[Int]("buy").toOption
+          val hold = stock_recommendation.hcursor.get[Int]("hold").toOption
+          val sell = stock_recommendation.hcursor.get[Int]("sell").toOption
+          val strongSell = stock_recommendation.hcursor.get[Int]("strongSell").toOption
+          val period = stock_recommendation.hcursor.get[String]("period").getOrElse("").filter(_.isDigit).toInt
+
+
+          import java.time.LocalDate
+          val firstOfMonth = LocalDate.now.withDayOfMonth(1).atStartOfDay(ZoneOffset.UTC).toEpochSecond
+          val recommended_timestamp = Timestamp.valueOf(LocalDateTime.ofEpochSecond(firstOfMonth,0, ZoneOffset.UTC).minusMonths(period))
+          stock.recommendations=stock.recommendations.appended( StockRecommendation(symbol, strongBuy,buy,hold, sell,strongSell,recommended_timestamp) )
+        }
+      )
+    }
+
 
 
     stock

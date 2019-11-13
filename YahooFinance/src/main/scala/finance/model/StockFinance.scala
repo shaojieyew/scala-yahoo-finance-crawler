@@ -249,7 +249,7 @@ object StockFinance{
     }
 
 
-  def insertUpdateStockFinance(symbol:String): Unit ={
+  def insertStockFinance(symbol:String): Unit ={
     StockFinanceScraper.get(symbol).foreach(stockFinance=>{
       if(stockFinance.getClass.getName==StockIncome.getClass.getName.dropRight(1)){
         StockIncomeQuery.insertStockFinanceIncome(stockFinance.asInstanceOf[StockIncome])

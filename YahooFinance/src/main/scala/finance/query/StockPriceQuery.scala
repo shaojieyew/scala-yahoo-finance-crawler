@@ -10,7 +10,7 @@ import finance.model.{Stock, StockPrice, StockSeeder}
 object StockPriceQuery extends Database{
 
   def getStockPriceLastInsertDate(stock:String): Option[Timestamp] ={
-    Util.printLog("getStockPriceLastInsertDate, symbol=%s".format(stock))
+    Util.printLog("StockPriceQuery getStockPriceLastInsertDate, symbol=%s".format(stock))
     val last_update= sql"""
         select max(date)
         from finance.stock_price
@@ -18,12 +18,12 @@ object StockPriceQuery extends Database{
         """
       .query[Option[Timestamp]]
       .option.transact(xa).unsafeRunSync.get
-    Util.printLog("gotStockPriceLastInsertDate, symbol=%s, last_update=%s".format(stock,last_update))
+    Util.printLog("StockPriceQuery gotStockPriceLastInsertDate, symbol=%s, last_update=%s".format(stock,last_update))
     last_update
   }
 
   def getStockPrice(stock: String, date: Timestamp): Option[StockPrice] ={
-    Util.printLog("getStockPrice, symbol=%s, date=%s".format(stock, date))
+    Util.printLog("StockPriceQuery getStockPrice, symbol=%s, date=%s".format(stock, date))
     sql"""
         select stock, open, high, low, close, adj_close, vol, date
         from finance.stock_price
@@ -34,7 +34,7 @@ object StockPriceQuery extends Database{
   }
 
   def insertStockPrice(stockPrice: StockPrice): Unit ={
-    Util.printLog("insertStockPrice, symbol=%s, date=%s".format(stockPrice.stock, stockPrice.date))
+    Util.printLog("StockPriceQuery insertStockPrice, symbol=%s, date=%s".format(stockPrice.stock, stockPrice.date))
     sql"""
     INSERT INTO finance.stock_price(
             stock, open, high, low, close, adj_close, vol, date)

@@ -10,7 +10,7 @@ import finance.model.{Stock, StockSeeder}
 object StockQuery extends Database{
 
   def getStock(symbol: String): Option[Stock] ={
-    Util.printLog("getStock, symbol=%s".format(symbol))
+    Util.printLog("StockQuery getStock, symbol=%s".format(symbol))
     sql"""
         select symbol, name, industry, sector, country, market, exchange, website,
             description, quote_type, exchange_timezone_name, is_esg_populated, is_tradeable, 0
@@ -27,7 +27,7 @@ object StockQuery extends Database{
   }
 
   def insertStock(stock: Stock): Unit ={
-    Util.printLog("insertStock, symbol=%s".format(stock.symbol))
+    Util.printLog("StockQuery insertStock, symbol=%s".format(stock.symbol))
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
     sql"""
     INSERT INTO finance.stock(
@@ -58,7 +58,7 @@ object StockQuery extends Database{
 
 
   def updateStock(stock: Stock): Unit ={
-    Util.printLog("updateStock, symbol=%s".format(stock.symbol))
+    Util.printLog("StockQuery updateStock, symbol=%s".format(stock.symbol))
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
     sql"""
       UPDATE finance.stock
@@ -78,7 +78,7 @@ object StockQuery extends Database{
 
 
   def getCompanySize(symbol: String): Option[Int] ={
-    Util.printLog("getCompanysize, symbol=%s".format(symbol))
+    Util.printLog("StockQuery getCompanysize, symbol=%s".format(symbol))
     sql"""
         select count
         from finance.stock_company_size
@@ -86,13 +86,14 @@ object StockQuery extends Database{
         order by created_timestamp desc
         limit 1
         """
-      .query[Int]
-      .option.transact(xa).unsafeRunSync
+      .query[Option[Int]]
+      .option.transact(xa).unsafeRunSync.getOrElse(Option.empty)
   }
   def insertCompanySize(stock: Stock, now: Timestamp): Unit ={
     val company_size=getCompanySize(stock.symbol)
-    if(company_size.isEmpty || (company_size.nonEmpty && company_size.get!=stock.full_time_employees)){
-      Util.printLog("insertCompanySize, symbol=%s, size=%s".format(stock.symbol,company_size.toString))
+    if(stock.full_time_employees.nonEmpty &&
+    (company_size.isEmpty || (company_size.nonEmpty && company_size.get!=stock.full_time_employees))){
+      Util.printLog("StockQuery insertCompanySize, symbol=%s, size=%s".format(stock.symbol,company_size.toString))
       sql"""
       INSERT INTO finance.stock_company_size(
         stock, count, created_timestamp)
@@ -103,7 +104,7 @@ object StockQuery extends Database{
     }
   }
   def getAllStockSeeder(): List[StockSeeder] ={
-    Util.printLog("getAllStockSeeder")
+    Util.printLog("StockQuery getAllStockSeeder")
     sql"""
         select symbol,src,created_timestamp,updated_timestamp from finance.stock_seeder
         """

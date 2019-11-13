@@ -10,7 +10,7 @@ import finance.model.{Stock, StockDividend, StockSeeder}
 object StockDividendQuery extends Database{
 
   def getStockDividendLastInsertDate(stock:String): Option[Timestamp] ={
-    Util.printLog("getStockDividendLastInsertDate, symbol=%s".format(stock))
+    Util.printLog("StockDividendQuery getStockDividendLastInsertDate, symbol=%s".format(stock))
     val last_update= sql"""
         select max(date)
         from finance.stock_Dividend
@@ -18,12 +18,12 @@ object StockDividendQuery extends Database{
         """
       .query[Option[Timestamp]]
       .option.transact(xa).unsafeRunSync.get
-    Util.printLog("gotStockDividendLastInsertDate, symbol=%s, last_update=%s".format(stock,last_update))
+    Util.printLog("StockDividendQuery gotStockDividendLastInsertDate, symbol=%s, last_update=%s".format(stock,last_update))
     last_update
   }
 
   def getStockDividend(stock: String, date: Timestamp): Option[StockDividend] ={
-    Util.printLog("getStockDividend, symbol=%s, date=%s".format(stock, date))
+    Util.printLog("StockDividendQuery getStockDividend, symbol=%s, date=%s".format(stock, date))
     sql"""
         select stock, dividend, date
         from finance.stock_dividend
@@ -34,7 +34,7 @@ object StockDividendQuery extends Database{
   }
 
   def insertStockDividend(stockDividend: StockDividend): Unit ={
-    Util.printLog("insertStockDividend, symbol=%s, date=%s".format(stockDividend.stock, stockDividend.date))
+    Util.printLog("StockDividendQuery insertStockDividend, symbol=%s, date=%s".format(stockDividend.stock, stockDividend.date))
     sql"""
     INSERT INTO finance.stock_dividend(
             stock, dividend, date)

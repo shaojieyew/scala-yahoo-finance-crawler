@@ -8,7 +8,7 @@ object StockRecommendationQuery extends Database{
 
 
   def getStockRecommendation(symbol: String): List[StockRecommendation] ={
-    Util.printLog("getStockRecommendation, symbol=%s".format(symbol))
+    Util.printLog("StockRecommendationQuery getStockRecommendation, symbol=%s".format(symbol))
     sql"""
         SELECT stock, strong_buy, buy, hold, sell, strong_sell, recommended_timestamp
         FROM finance.stock_recommendation
@@ -21,7 +21,7 @@ object StockRecommendationQuery extends Database{
   }
 
   def getStockRecommendation(stockRecommendation: StockRecommendation): Option[StockRecommendation] ={
-    Util.printLog("getStockRecommendation, symbol=%s, recommended_timestamp=%s".format(stockRecommendation.stock, stockRecommendation.recommended_timestamp))
+    Util.printLog("StockRecommendationQuery getStockRecommendation, symbol=%s, recommended_timestamp=%s".format(stockRecommendation.stock, stockRecommendation.recommended_timestamp))
     sql"""
         select stock, strong_buy, buy, hold, sell, strong_sell, recommended_timestamp from finance.stock_recommendation
         where stock = ${stockRecommendation.stock}
@@ -40,7 +40,7 @@ object StockRecommendationQuery extends Database{
 
 
   def deleteStockRecommendation(stockRecommendation: StockRecommendation): Unit ={
-    Util.printLog("deleteStockRecommendation, symbol=%s, recommended_timestamp=%s".format(stockRecommendation.stock, stockRecommendation.recommended_timestamp))
+    Util.printLog("StockRecommendationQuery deleteStockRecommendation, symbol=%s, recommended_timestamp=%s".format(stockRecommendation.stock, stockRecommendation.recommended_timestamp))
     sql"""
         delete from finance.stock_recommendation
         where stock = ${stockRecommendation.stock}
@@ -59,7 +59,7 @@ object StockRecommendationQuery extends Database{
     val queryStockRec = getStockRecommendation(stockRecommendation)
     val now = Util.NOW_TIMESTAMP
     if(queryStockRec.isEmpty){
-      Util.printLog("insertStockRecommendation, symbol=%s, recommended_timestamp=%s".format(stockRecommendation.stock, stockRecommendation.recommended_timestamp))
+      Util.printLog("StockRecommendationQuery insertStockRecommendation, symbol=%s, recommended_timestamp=%s".format(stockRecommendation.stock, stockRecommendation.recommended_timestamp))
       sql"""
 INSERT INTO finance.stock_recommendation(
             stock, strong_buy, buy, hold, sell, strong_sell, recommended_timestamp,

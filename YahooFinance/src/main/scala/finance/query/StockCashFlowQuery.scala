@@ -7,7 +7,7 @@ import finance.model.{StockCashFlow, StockIncome}
 object StockCashFlowQuery extends Database{
 
   def insertStockFinanceCashflow(stockCashflow: StockCashFlow): Unit ={
-    Util.printLog("insertStockFinanceCashflow, symbol=%s, date=%s".format(stockCashflow.stock, stockCashflow.date))
+    Util.printLog("StockCashFlowQuery insertStockFinanceCashflow, symbol=%s, date=%s".format(stockCashflow.stock, stockCashflow.date))
     sql"""
 INSERT INTO finance.stock_company_cashflow(
             stock, date, free_cash_flow, capital_expenditure, operating_cashflow,

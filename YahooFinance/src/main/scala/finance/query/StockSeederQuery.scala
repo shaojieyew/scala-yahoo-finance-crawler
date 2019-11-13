@@ -15,7 +15,7 @@ object StockSeederQuery extends Database{
   }
 
   def getAllStockSeeder(): List[StockSeeder] ={
-    Util.printLog("getAllStockSeeder")
+    Util.printLog("StockSeederQuery getAllStockSeeder")
     sql"""
         select symbol,src,created_timestamp,updated_timestamp from finance.stock_seeder
         """
@@ -26,7 +26,7 @@ object StockSeederQuery extends Database{
   }
 
   def getStockSeeder(symbol: String, src: String): Option[StockSeeder] ={
-    Util.printLog("getStockSeeder, symbol=%s, src=%s".format(symbol, src))
+    Util.printLog("StockSeederQuery getStockSeeder, symbol=%s, src=%s".format(symbol, src))
     sql"""
         select symbol,src,created_timestamp,updated_timestamp from finance.stock_seeder
         where symbol = $symbol and src = $src
@@ -36,7 +36,7 @@ object StockSeederQuery extends Database{
   }
 
   def insertStockSeeder(symbol: String, src: String): Unit ={
-    Util.printLog("insertStockSeeder, symbol=%s, src=%s".format(symbol, src))
+    Util.printLog("StockSeederQuery insertStockSeeder, symbol=%s, src=%s".format(symbol, src))
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
     sql"""
        insert into finance.stock_seeder (symbol,src,created_timestamp,updated_timestamp)
@@ -48,7 +48,7 @@ object StockSeederQuery extends Database{
 
 
   def updateStockSeeder(symbol: String, src: String): Unit ={
-    Util.printLog("updateStockSeeder, symbol=%s, src=%s".format(symbol, src))
+    Util.printLog("StockSeederQuery updateStockSeeder, symbol=%s, src=%s".format(symbol, src))
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
     sql"""
        update finance.stock_seeder set updated_timestamp = $now
@@ -59,7 +59,7 @@ object StockSeederQuery extends Database{
   }
 
   def deleteStockSeeder(symbol: String, src: String): Unit ={
-    Util.printLog("deleteStockSeeder, symbol=%s, src=%s".format(symbol, src))
+    Util.printLog("StockSeederQuery deleteStockSeeder, symbol=%s, src=%s".format(symbol, src))
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
     sql"""
        delete from finance.stock_seeder
@@ -70,7 +70,7 @@ object StockSeederQuery extends Database{
   }
 
   def deleteAllStockSeeder(): Unit ={
-    Util.printLog("deleteAllStockSeeder")
+    Util.printLog("StockSeederQuery deleteAllStockSeeder")
     val now: Timestamp = Timestamp.valueOf(LocalDateTime.now)
     sql"""
        delete from finance.stock_seeder

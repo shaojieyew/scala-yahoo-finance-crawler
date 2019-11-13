@@ -8,7 +8,7 @@ object StockRatingQuery extends Database{
 
 
   def getStockRatings(symbol: String): List[StockRating] ={
-    Util.printLog("getStockRatings, symbol=%s".format(symbol))
+    Util.printLog("StockRatingQuery getStockRatings, symbol=%s".format(symbol))
     sql"""
         select stock,
                        firm,
@@ -25,7 +25,7 @@ object StockRatingQuery extends Database{
   }
 
   def getStockRating(stockRating: StockRating): Option[StockRating] ={
-    Util.printLog("getStockRating, symbol=%s, firm=%s, graded_timestamp=%s".format(stockRating.stock, stockRating.firm, stockRating.graded_timestamp))
+    Util.printLog("StockRatingQuery getStockRating, symbol=%s, firm=%s, graded_timestamp=%s".format(stockRating.stock, stockRating.firm, stockRating.graded_timestamp))
     sql"""
         select stock,
                        firm,
@@ -45,7 +45,7 @@ object StockRatingQuery extends Database{
     val now = Util.NOW_TIMESTAMP
     val queryStockRating=getStockRating(stockRating)
     if(queryStockRating.isEmpty){
-      Util.printLog("insertStockRating, symbol=%s, firm=%s, graded_timestamp=%s".format(stockRating.stock, stockRating.firm, stockRating.graded_timestamp))
+      Util.printLog("StockRatingQuery insertStockRating, symbol=%s, firm=%s, graded_timestamp=%s".format(stockRating.stock, stockRating.firm, stockRating.graded_timestamp))
       sql"""
 INSERT INTO finance.stock_rating(
             stock, firm, from_grade, to_grade, action, graded_timestamp,

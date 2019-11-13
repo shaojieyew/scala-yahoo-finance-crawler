@@ -1,17 +1,19 @@
 package finance
-import finance.model.{StockDividendHistorical, StockFinance, StockHistorical, StockPrice, StockPriceHistorical}
+import finance.model.{StockDividendHistorical, StockFinance, StockHistorical, StockPrice, StockPriceHistorical, StockStats}
 import finance.query.{StockEarningEstimateQuery, StockQuery, StockRatingQuery, StockRecommendationQuery, StockSeederQuery}
 import finance.scraper.yahoo.{StockAnalysisScraper, StockListScraper, StockScraper}
 object App {
 
-  //TODO, include summary stats of te stocks
-  //TODO, analyst target price summary
   //TODO, standardis upgrade and downgrades , overwhelm, overweight etc...
   val UPDATE_SEEDER = false
 
   def main(args: Array[String]): Unit = {
     //updateStockSeeder(StockListScraper.STOCKS_UNDERVALUED_LARGE_CAPS)
-    updateStock("C6L.SI")
+
+    updateStock("SPY")
+    updateStock("Z74.SI")
+    updateStock("D05.SI")
+    updateStock("D05.SI")
   }
 
   def updateStockSeeder(url:String): Unit ={
@@ -46,6 +48,8 @@ object App {
 
     StockPriceHistorical.insertStockHistoricalData(symbol)
     StockDividendHistorical.insertStockHistoricalData(symbol)
-    StockFinance.insertUpdateStockFinance(symbol)
+    StockFinance.insertStockFinance(symbol)
+    StockStats.insertStockStats(symbol)
+
   }
 }

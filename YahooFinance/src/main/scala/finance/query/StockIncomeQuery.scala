@@ -7,7 +7,7 @@ import finance.model.{StockIncome, StockPrice}
 object StockIncomeQuery extends Database{
 
   def insertStockFinanceIncome(stockIncome: StockIncome): Unit ={
-    Util.printLog("insertStockFinanceIncome, symbol=%s, date=%s".format(stockIncome.stock, stockIncome.date))
+    Util.printLog("StockIncomeQuery insertStockFinanceIncome, symbol=%s, date=%s".format(stockIncome.stock, stockIncome.date))
     sql"""
     INSERT INTO finance.stock_company_income(
             stock, date, weighted_avg_share, diluted_avg_share, basic_avg_share,

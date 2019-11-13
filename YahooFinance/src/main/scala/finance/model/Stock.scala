@@ -8,19 +8,19 @@ import finance.query.{StockDividendQuery, StockEarningEstimateQuery, StockPriceQ
 import finance.scraper.yahoo.StockHistoricalScraper
 
 case class Stock(symbol: String,
-                 name: String,
-                 industry: String,
-                 sector: String,
-                 country: String,
-                 market: String,
-                 exchange: String,
-                 website: String,
-                 description: String,
-                 quote_type: String,
-                 exchange_timezone_name: String,
-                 is_esg_populated: Boolean,
-                 is_tradeable :Boolean,
-                 full_time_employees: Int){
+                 name: Option[String],
+                 industry: Option[String],
+                 sector: Option[String],
+                 country: Option[String],
+                 market: Option[String],
+                 exchange: Option[String],
+                 website: Option[String],
+                 description: Option[String],
+                 quote_type: Option[String],
+                 exchange_timezone_name: Option[String],
+                 is_esg_populated: Option[Boolean],
+                 is_tradeable :Option[Boolean],
+                 full_time_employees: Option[Int]){
 
   var ratings: List[StockRating] = List()
   var recommendations: List[StockRecommendation] = List()

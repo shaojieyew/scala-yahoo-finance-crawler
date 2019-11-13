@@ -11,7 +11,7 @@ import finance.model._
 object StockRevenueEstimateQuery extends Database{
 
   def getStockRevenueEstimate(stockRevenueEstimate: StockRevenueEstimate): Option[StockRevenueEstimate] ={
-    Util.printLog("getStockRevenueEstimate, symbol=%s, est_date=%s, end_date=%s, period=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period))
+    Util.printLog("StockRevenueEstimateQuery getStockRevenueEstimate, symbol=%s, est_date=%s, end_date=%s, period=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period))
     sql"""
         SELECT stock, est_date, period, end_date, est_avg,  est_low, est_high,no_analyst, growth
         FROM finance.stock_revenue_estimate
@@ -30,7 +30,7 @@ object StockRevenueEstimateQuery extends Database{
     val queryStockRec = getStockRevenueEstimate(stockRevenueEstimate)
     val now = Util.NOW_TIMESTAMP
     if(queryStockRec.isEmpty){
-      Util.printLog("insertStockRevenueEstimateQuery, symbol=%s, est_date=%s, end_date=%s, period=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period))
+      Util.printLog("StockRevenueEstimateQuery insertStockRevenueEstimateQuery, symbol=%s, est_date=%s, end_date=%s, period=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period))
       sql"""
         INSERT INTO finance.stock_revenue_estimate(
             stock, est_date, period, end_date, est_avg, est_high, est_low,
@@ -51,7 +51,7 @@ object StockRevenueEstimateQuery extends Database{
     val estDate = Timestamp.valueOf(LocalDateTime.now.truncatedTo(ChronoUnit.DAYS))
     val now = Util.NOW_TIMESTAMP
     if(stockRevenueEstimate.est_date.equals(estDate)) {
-      Util.printLog("updateStockRevenueEstimateQuery, symbol=%s, est_date=%s, end_date=%s, period=%s est_avg=%s, est_high=%s, est_low=%s, no_analyst=%s growth=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period, stockRevenueEstimate.est_avg, stockRevenueEstimate.est_high, stockRevenueEstimate.est_low, stockRevenueEstimate.no_analyst, stockRevenueEstimate.growth))
+      Util.printLog("StockRevenueEstimateQuery updateStockRevenueEstimateQuery, symbol=%s, est_date=%s, end_date=%s, period=%s est_avg=%s, est_high=%s, est_low=%s, no_analyst=%s growth=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period, stockRevenueEstimate.est_avg, stockRevenueEstimate.est_high, stockRevenueEstimate.est_low, stockRevenueEstimate.no_analyst, stockRevenueEstimate.growth))
       sql"""
         UPDATE finance.stock_revenue_estimate
    SET est_avg=${stockRevenueEstimate.est_avg}, est_high=${stockRevenueEstimate.est_high},
@@ -65,7 +65,7 @@ object StockRevenueEstimateQuery extends Database{
         .update
         .run.transact(xa).unsafeRunSync
     } else{
-      Util.printLog("updateStockRevenueEstimateQuery, symbol=%s, est_date=%s, end_date=%s, period=%s est_avg=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period, stockRevenueEstimate.est_avg))
+      Util.printLog("StockRevenueEstimateQuery updateStockRevenueEstimateQuery, symbol=%s, est_date=%s, end_date=%s, period=%s est_avg=%s".format(stockRevenueEstimate.stock, stockRevenueEstimate.est_date, stockRevenueEstimate.end_date, stockRevenueEstimate.period, stockRevenueEstimate.est_avg))
       sql"""
         UPDATE finance.stock_revenue_estimate
    SET est_avg=${stockRevenueEstimate.est_avg}, updated_timestamp=${now}
