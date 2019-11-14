@@ -9,7 +9,7 @@ object StockCashFlowQuery extends Database{
   def insertStockFinanceCashflow(stockCashflow: StockCashFlow): Unit ={
     Util.printLog("StockCashFlowQuery insertStockFinanceCashflow, symbol=%s, date=%s".format(stockCashflow.stock, stockCashflow.date))
     sql"""
-INSERT INTO finance.stock_company_cashflow(
+    INSERT INTO finance.stock_company_cashflow(
             stock, date, free_cash_flow, capital_expenditure, operating_cashflow,
             end_cash_position, begin_cash_position, change_in_cash_supplemental_reported,
             cash_flow_from_continuing_financing_activities, net_other_financing_charges,

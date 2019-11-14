@@ -20,7 +20,7 @@ object StockHistoricalTest extends App{
   //println(yahooHistorical.getSplits())
 }
 
-class StockHistoricalScraper(symbol: String, start: Array[Int]=Array(1976,1,1), end: Array[Int]=Array(), interval: String ="1d"){
+class StockHistoricalScraper(symbol: String, start: Array[Int]=Array(2000,1,1), end: Array[Int]=Array(), interval: String ="1d"){
   val api_url = "https://query1.finance.yahoo.com/v7/finance/download/%s?period1=%s&period2=%s&interval=%s&events=%s&crumb=%s"
   symbol.toUpperCase
   val (crumb, cookies)=getCrumb(symbol)

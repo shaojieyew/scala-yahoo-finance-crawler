@@ -2,41 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/Listing/SGX.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/Data/Listing/SGX.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/finance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/Stock.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/StockEstimate.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockEstimate.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/Database.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/Database.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockCashFlowQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockCashFlowQuery.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockSeederQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockSeederQuery.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockFinanceScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockFinanceScraper.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistoricalScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistoricalScraper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockScraper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/App$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/App$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockAnalysisEstimate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockAnalysisEstimate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockEarningEstimate$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockEarningEstimate$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockEarningEstimate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockEarningEstimate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockRevenueEstimate$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockRevenueEstimate$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockRevenueEstimate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockRevenueEstimate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/Util$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/Util$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/Database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$generic$macro$20$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$generic$macro$20$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$macro$12$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$macro$12$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,6 +123,7 @@
     <configuration name="App" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="finance.App" />
       <module name="Finance" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:5432 postgres admin Data/Listing/SGX.csv print " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="finance.*" />
@@ -173,6 +186,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="Application.StockListScraper" />
+      <item itemvalue="Application.StockStatsScraperTest" />
+      <item itemvalue="Application.test222" />
+      <item itemvalue="Application.testing" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
@@ -222,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573656430918</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation&#10;Added Stock financialStats, stockshareStats and valuationStats">
+      <created>1573662011821</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1573662011821</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -243,6 +270,7 @@
     <MESSAGE value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query" />
     <MESSAGE value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation" />
     <MESSAGE value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation&#10;Added Stock financialStats, stockshareStats and valuationStats" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation&#10;Added Stock financialStats, stockshareStats and valuationStats" />
+    <MESSAGE value="updated code structure and parameterise jar" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated code structure and parameterise jar" />
   </component>
 </project>

@@ -6,7 +6,11 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object Util {
-  def printLog(msg: String) = println(msg)
+  def printLog(msg: String) = {
+    if (App.print){
+      println(msg)
+    }
+  }
 
   val DATE_FORMAT = new SimpleDateFormat("YYYY-MM-DD HH:mm:ss.S")
 

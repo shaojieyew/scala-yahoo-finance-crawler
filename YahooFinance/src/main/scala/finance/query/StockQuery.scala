@@ -1,7 +1,7 @@
 package finance.query
 
 import java.sql.Timestamp
-import java.time.LocalDateTime
+import java.time.{LocalDateTime, ZoneOffset}
 
 import doobie.implicits._
 import finance.Util
@@ -19,6 +19,17 @@ object StockQuery extends Database{
         """
       .query[Stock]
       .option.transact(xa).unsafeRunSync
+  }
+
+  def getStockLastUpdate(symbol: String): Option[Timestamp] ={
+    Util.printLog("StockQuery getStockLastUpdate, symbol=%s".format(symbol))
+    sql"""
+        select updated_timestamp
+        from finance.stock
+        where symbol = $symbol
+        """
+      .query[Option[Timestamp]]
+      .option.transact(xa).unsafeRunSync.getOrElse(Option.empty)
   }
 
   def insertUpdateStock(stock: Stock): Unit ={
