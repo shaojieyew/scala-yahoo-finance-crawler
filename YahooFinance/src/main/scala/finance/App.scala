@@ -41,31 +41,32 @@ object App {
     }else{
       throw new Exception("Invalid args")
     }
-    /*
-    "jdbc:postgresql://localhost:5432",
-    "postgres", "admin"
-    location of csv
-
-    */
-
+    //updateStock("1A4.SI")
 
     StockQuery.getAllStockSeeder().foreach(stock=>
     {
       updateStock(stock.symbol)
     })
+
+
   }
 
   def updateStock(symbol:String){
     val stockLastUpdate = StockQuery.getStockLastUpdate(symbol)
     Util.printLog("stockLastUpdate, symbol=%s, update=%s".format(symbol,stockLastUpdate))
-    if(stockLastUpdate.isEmpty || ((Timestamp.valueOf(LocalDateTime.now.minusDays(1)).compareTo(stockLastUpdate.get))==1) ){
-      println("Processing Stock, symbol=%s".format(symbol))
-      Stock.insertStockDetails(symbol)
-      StockEstimate.insertStockEstimate(symbol)
-      StockPriceHistorical.insertStockHistoricalData(symbol)
-      StockDividendHistorical.insertStockHistoricalData(symbol)
-      StockFinance.insertStockFinance(symbol)
-      StockStats.insertStockStats(symbol)
+   // if(stockLastUpdate.isEmpty || ((Timestamp.valueOf(LocalDateTime.now.minusDays(1)).compareTo(stockLastUpdate.get))==1) ){
+    if(stockLastUpdate.isEmpty || ((Timestamp.valueOf(LocalDateTime.now.minusHours(6)).compareTo(stockLastUpdate.get))==1) ){
+        println("Processing Stock, symbol=%s".format(symbol))
+      val stock = Stock.insertStockDetails(symbol)
+      if(stock.nonEmpty){
+        StockEstimate.insertStockEstimate(stock.get.symbol)
+        StockPriceHistorical.insertStockHistoricalData(stock.get.symbol)
+        StockDividendHistorical.insertStockHistoricalData(stock.get.symbol)
+        StockFinance.insertStockFinance(stock.get.symbol)
+        StockStats.insertStockStats(stock.get.symbol)
+      }else{
+        Util.printLog("Invalid stock, symbol=%s".format(symbol))
+      }
     }
   }
 }

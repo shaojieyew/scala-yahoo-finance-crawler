@@ -28,10 +28,15 @@ case class Stock(symbol: String,
 }
 
 object Stock{
-  def insertStockDetails(symbol:String): Unit ={
+  def insertStockDetails(symbol:String): Option[Stock] ={
     val stock = StockScraper.get(symbol)
-    StockQuery.insertUpdateStock(stock)
-    stock.ratings.foreach(x => StockRatingQuery.insertStockRating(x))
-    stock.recommendations.foreach(x => StockRecommendationQuery.insertStockRecommendation(x))
+    if(stock.nonEmpty){
+      StockQuery.insertUpdateStock(stock.get)
+      stock.get.ratings.foreach(x => StockRatingQuery.insertStockRating(x))
+      stock.get.recommendations.foreach(x => StockRecommendationQuery.insertStockRecommendation(x))
+      stock
+    }else{
+      Option.empty
+    }
   }
 }

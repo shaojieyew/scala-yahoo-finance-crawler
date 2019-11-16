@@ -14,32 +14,43 @@ import net.minidev.json.JSONArray
 import scala.util.matching.Regex
 
 object testing extends App{
-  StockScraper.get("C92.SI")
+  StockScraper.get("5TP.SI")
 }
 
 object StockScraper {
 
-  def get(symbol: String): Stock =  {
+  def get(symbol: String): Option[Stock] =  {
     val json = crawl(symbol)
-    parse(json.getOrElse("").toString, symbol)
+    if(json.nonEmpty){
+      Option(parse(json.getOrElse("").toString, symbol))
+    }else{
+      Option.empty
+    }
   }
 
   private def crawl(symbol: String): Option[Json] =  {
     val url = "https://sg.finance.yahoo.com/quote/%s?p=%s".format(symbol, symbol)
     val r=requests.get(url)
     Util.printLog("StockScraper getStockDetails url=%s".format(r.url))
-
-    val pattern = new Regex("root\\.App\\.main.*}}}};")
-    var patternHit = (pattern findFirstIn r.text).getOrElse("")
-    patternHit = patternHit.replace("root.App.main = ","").dropRight(1)
-    val json: Json = parser.parse(patternHit).getOrElse(Json.Null)
-    json.hcursor.downField("context").downField("dispatcher")
-      .downField("stores").downField("QuoteSummaryStore").focus
+    if((new Regex("loopkup\\?") findFirstIn r.url).isEmpty){
+      val pattern = new Regex("root\\.App\\.main.*}}}};")
+      var patternHit = (pattern findFirstIn r.text).getOrElse("")
+      patternHit = patternHit.replace("root.App.main = ","").dropRight(1)
+      val json: Json = parser.parse(patternHit).getOrElse(Json.Null)
+      json.hcursor.downField("context").downField("dispatcher")
+        .downField("stores").downField("QuoteSummaryStore").focus
+    }else{
+      Option.empty
+    }
   }
 
   private def parse(jsonString: String, symbol: String): Stock = {
     val json: Json = parser.parse(jsonString).getOrElse(Json.Null)
-    val name = json.hcursor.downField("quoteType").get[String]("shortName").toOption
+    var name = json.hcursor.downField("quoteType").get[String]("longName").toOption
+    if( name.isEmpty){
+      name = json.hcursor.downField("quoteType").get[String]("shortName").toOption
+    }
+    // val name = json.hcursor.downField("quoteType").get[String]("shortName").toOption
     val industry = json.hcursor.downField("summaryProfile").get[String]("industry").toOption
     val sector = json.hcursor.downField("summaryProfile").get[String]("sector").toOption
     val country = json.hcursor.downField("summaryProfile").get[String]("country").toOption

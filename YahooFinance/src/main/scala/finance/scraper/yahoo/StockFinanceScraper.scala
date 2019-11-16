@@ -27,70 +27,64 @@ object StockFinanceScraper {
     val period1 = start.toEpochSecond(ZoneOffset.UTC)
     val period2 = end.toEpochSecond(ZoneOffset.UTC)
 
-    val sdf =  new SimpleDateFormat("yyyy-MM-dd")
+    val sdf = new SimpleDateFormat("yyyy-MM-dd")
     val params = (for (t <- StockFinance.TYPES; col <- StockFinance.INCOME_COLS ::: StockFinance.BALANCE_COLS ::: StockFinance.CASHFLOW_COLS) yield "%s%s".format(t, col)).mkString(",")
     var url = "https://query1.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/%s" +
       "?lang=en-SG&region=SG&symbol=%s&padTimeSeries=true&type=%s" +
       "&merge=false&period1=%s&period2=%s&corsDomain=sg.finance.yahoo.com"
     url = url.format(symbol, symbol, params, period1, period2)
+    var max_try = 3
+    var tried = 0
+    do{
+      try{
+        val r = requests.get(url)
+        tried = tried +1
+        Util.printLog("StockFinanceScraper getStockTrends url=%s".format(r.url))
+        val json = Option(parser.parse(r.text).getOrElse(Json.Null))
+      //println(json)
+        if (json.nonEmpty) {
+        //val results = JsonPath.read[JSONArray](json.get.toString(),"$.timeseries.result[?(@.timestamp)]")
 
-    val r = requests.get(url)
-    Util.printLog("StockFinanceScraper getStockTrends url=%s".format(r.url))
-    val json = Option(parser.parse(r.text).getOrElse(Json.Null))
-    //println(json)
-    if (json.nonEmpty) {
-      //val results = JsonPath.read[JSONArray](json.get.toString(),"$.timeseries.result[?(@.timestamp)]")
-
-      val cols = for (t <- StockFinance.TYPES; col <- StockFinance.INCOME_COLS ::: StockFinance.BALANCE_COLS ::: StockFinance.CASHFLOW_COLS) yield "%s%s".format(t, col)
-      for (col <- cols) {
-        val results = JsonPath.read[JSONArray](json.get.toString(), "$.timeseries.result[?(@.%s)].%s[?(@.reportedValue)]".format(col, col)).toJSONString()
-        parser.parse(results).foreach(x=> {
-          val normalised = col.toString.replaceFirst("trailing","").replaceFirst("annual","").replaceFirst("quarterly","")
-          x.asArray.foreach(recs=>{
-            recs.foreach(rec=>{
-              val asOfDate = JsonPath.read(rec.toString(), "$.asOfDate").toString
-              val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond(sdf.parse(asOfDate).getTime/1000,0,ZoneOffset.of("+08:00")))
-              val period = JsonPath.read(rec.toString(), "$.periodType").toString
-              val currency = JsonPath.read(rec.toString(), "$.currencyCode").toString
-              val value = JsonPath.read(rec.toString(), "$.reportedValue.raw").toString.toFloat
-              val finance_type = normalised
-              /*
-              println(finance_type)
-              println(date)
-              println(period)
-              println(currency)
-              println(value)
-              */
-              val stockFinance = StockFinance.getInstance(symbol, date, period,value,finance_type, currency)
-              val key = (date,period,stockFinance.getClass.getName.split("\\.").last)
-              if(final_result.get(key).isEmpty){
-                final_result += (key)->StockFinance.getInstance(symbol, date, period,value,finance_type, currency)
-              }else{
-                val obj = final_result.get(key).get
-                obj.updateInstance(value, finance_type)
-                final_result += (key)->obj
-              }
+          val cols = for (t <- StockFinance.TYPES; col <- StockFinance.INCOME_COLS ::: StockFinance.BALANCE_COLS ::: StockFinance.CASHFLOW_COLS) yield "%s%s".format(t, col)
+          for (col <- cols) {
+            val results = JsonPath.read[JSONArray](json.get.toString(), "$.timeseries.result[?(@.%s)].%s[?(@.reportedValue)]".format(col, col)).toJSONString()
+            parser.parse(results).foreach(x => {
+              val normalised = col.toString.replaceFirst("trailing", "").replaceFirst("annual", "").replaceFirst("quarterly", "")
+              x.asArray.foreach(recs => {
+                recs.foreach(rec => {
+                  val asOfDate = JsonPath.read(rec.toString(), "$.asOfDate").toString
+                  val date = Timestamp.valueOf(LocalDateTime.ofEpochSecond(sdf.parse(asOfDate).getTime / 1000, 0, ZoneOffset.of("+08:00")))
+                  val period = JsonPath.read(rec.toString(), "$.periodType").toString
+                  val currency = JsonPath.read(rec.toString(), "$.currencyCode").toString
+                  val value = JsonPath.read(rec.toString(), "$.reportedValue.raw").toString.toFloat
+                  val finance_type = normalised
+                  /*
+                  println(finance_type)
+                  println(date)
+                  println(period)
+                  println(currency)
+                  println(value)
+                  */
+                  val stockFinance = StockFinance.getInstance(symbol, date, period, value, finance_type, currency)
+                  val key = (date, period, stockFinance.getClass.getName.split("\\.").last)
+                  if (final_result.get(key).isEmpty) {
+                    final_result += (key) -> StockFinance.getInstance(symbol, date, period, value, finance_type, currency)
+                  } else {
+                    val obj = final_result.get(key).get
+                    obj.updateInstance(value, finance_type)
+                    final_result += (key) -> obj
+                  }
+                })
+              })
             })
-          })
-        })
-        /*
-      results.forEach(result=>{
-        val finance_type = JsonPath.read(result,"$.meta.type[0]").toString
-        val records = (JsonPath.read[JSONArray](result,"$.%s".format(finance_type)))
-        println(records)
-        records.forEach(record=>{
-          if(Option(record).nonEmpty){
-            val period = JsonPath.read(record,"$.periodType")
-            val date = JsonPath.read(record,"$.asOfDate")
-            val currencyCode = JsonPath.read(record,"$.currencyCode")
-            val value = JsonPath.read(record,"$.reportedValue.raw")
           }
-        })
+        }
+        tried = max_try
       }
-      )
-      */
+      catch{
+        case _: Exception => Util.printLog("Response failed count: "+tried)
       }
-    }
+    }while(tried < max_try)
     /*
     final_result.foreach(k=>{
       Util.printLog("======="+k._1+"======")
