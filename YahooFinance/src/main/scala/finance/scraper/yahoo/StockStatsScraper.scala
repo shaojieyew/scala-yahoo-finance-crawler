@@ -22,7 +22,11 @@ object StockStatsScraper {
 
   def get(symbol: String): List [StockStats] =  {
     val json = crawl(symbol)
-    parseStats(json.getOrElse("").toString)
+    if(json.nonEmpty){
+      parseStats(json.get.toString)
+    }else{
+      List()
+    }
   }
 
   def crawl(symbol: String): Option[Json] =  {

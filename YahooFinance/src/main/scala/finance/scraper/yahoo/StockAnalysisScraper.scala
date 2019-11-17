@@ -15,14 +15,17 @@ import scala.util.matching.Regex
 
 
 object test222 extends App{
-  StockAnalysisScraper.get("AAPL")
+  StockAnalysisScraper.get("5KT.SI")
 }
 
 object StockAnalysisScraper {
 
   def get(symbol: String): List[StockAnalysisEstimate] =  {
     val json = crawl(symbol)
-    parseRevenueEstimate(json.getOrElse("").toString) ::: parseEarningEstimate(json.getOrElse("").toString)
+    if(json.nonEmpty){
+      parseRevenueEstimate(json.getOrElse("").toString) ::: parseEarningEstimate(json.getOrElse("").toString)
+    }
+    List()
   }
 
   def crawl(symbol: String): Option[Json] =  {

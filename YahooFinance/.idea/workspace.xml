@@ -2,21 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/Data/Listing/SGX.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/run.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/Util.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/Database.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/Database.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockCashFlowQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockCashFlowQuery.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/query/StockQuery.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistoricalScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockHistoricalScraper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockStatsScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockStatsScraper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/App$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/App$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/Util$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/Util$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/Database.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" afterDir="false" />
@@ -48,7 +43,14 @@
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockStatsScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockStatsScraper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/test222$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/test222$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/testing$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/testing$.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +121,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="Application.test2sss2">
     <configuration name="App" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="finance.App" />
       <module name="Finance" />
@@ -134,34 +136,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StockListScraper" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.StockListScraper" />
-      <module name="Finance" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="finance.scraper.yahoo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StockStatsScraperTest" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.StockStatsScraperTest" />
-      <module name="Finance" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="finance.scraper.yahoo.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="test222" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.test222" />
+      <module name="Finance" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finance.scraper.yahoo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test2sss2" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.test2sss2" />
+      <module name="Finance" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finance.scraper.yahoo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="testStockTrend" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="finance.scraper.yahoo.testStockTrend" />
       <module name="Finance" />
       <extension name="coverage">
         <pattern>
@@ -188,17 +190,17 @@
     </configuration>
     <list>
       <item itemvalue="Application.App" />
-      <item itemvalue="Application.StockListScraper" />
-      <item itemvalue="Application.StockStatsScraperTest" />
-      <item itemvalue="Application.test222" />
       <item itemvalue="Application.testing" />
+      <item itemvalue="Application.testStockTrend" />
+      <item itemvalue="Application.test222" />
+      <item itemvalue="Application.test2sss2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
-        <item itemvalue="Application.StockListScraper" />
-        <item itemvalue="Application.StockStatsScraperTest" />
+        <item itemvalue="Application.test2sss2" />
         <item itemvalue="Application.test222" />
+        <item itemvalue="Application.testStockTrend" />
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.testing" />
       </list>
     </recent_temporary>
@@ -249,7 +251,21 @@
       <option name="project" value="LOCAL" />
       <updated>1573662011821</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="updated code structure and parameterise jar">
+      <created>1573747995454</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1573747995454</updated>
+    </task>
+    <task id="LOCAL-00007" summary="3 tries for response on stock finance">
+      <created>1573887517392</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1573887517392</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,6 +287,7 @@
     <MESSAGE value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation" />
     <MESSAGE value="Added JDBC Postgres&#10;Added Stock Estimation Parser and Query&#10;Added Earning Estimation Parser and Query&#10;Added Rating Parser and Query&#10;Added Recommendation Parser and Query&#10;Added Market price and Revenue Estimation&#10;Added Stock financialStats, stockshareStats and valuationStats" />
     <MESSAGE value="updated code structure and parameterise jar" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated code structure and parameterise jar" />
+    <MESSAGE value="3 tries for response on stock finance" />
+    <option name="LAST_COMMIT_MESSAGE" value="3 tries for response on stock finance" />
   </component>
 </project>
