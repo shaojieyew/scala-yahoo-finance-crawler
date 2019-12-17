@@ -3,8 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockAnalysisScraper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockStatsScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockStatsScraper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/StockRating.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockRating.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock_analysis/.ipynb_checkpoints/backtest-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/.ipynb_checkpoints/backtest-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock_analysis/Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock_analysis/backtest.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/backtest.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/App$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/App$.class" afterDir="false" />
@@ -12,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/target/classes/finance/Util$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/Util$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/Database.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" afterDir="false" />
@@ -46,11 +52,13 @@
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockStatsScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockStatsScraper$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/test222$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/test222$.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/testing$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/testing$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/target/run.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,11 +129,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.test2sss2">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="finance.App" />
       <module name="Finance" />
-      <option name="PROGRAM_PARAMETERS" value="localhost:5432 postgres admin Data/Listing/SGX.csv print " />
+      <option name="PROGRAM_PARAMETERS" value="localhost:5432 postgres admin Data/Listing/US_LARGE_CAP.csv print seed" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="finance.*" />
@@ -197,10 +205,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.App" />
         <item itemvalue="Application.test2sss2" />
         <item itemvalue="Application.test222" />
         <item itemvalue="Application.testStockTrend" />
-        <item itemvalue="Application.App" />
         <item itemvalue="Application.testing" />
       </list>
     </recent_temporary>
@@ -265,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573887517392</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="3 tries for response on stock finance">
+      <created>1574010696471</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1574010696471</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

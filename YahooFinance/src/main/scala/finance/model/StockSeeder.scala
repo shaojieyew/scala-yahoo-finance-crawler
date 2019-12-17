@@ -3,7 +3,7 @@ package finance.model
 import java.sql.Timestamp
 
 import finance.Util
-import finance.query.StockSeederQuery
+import finance.query.{StockQuery, StockSeederQuery}
 import finance.scraper.yahoo.StockListScraper
 
 case class StockSeeder(symbol: String, src: String
@@ -20,12 +20,15 @@ object StockSeeder{
 
 
   def updateStockSeeder(url:String): Unit ={
+    println(url)
     Util.printLog("updateStockSeeder")
     try{
       val src = "yahoo"
       val symbols = StockListScraper.get(url)
-      symbols.map(symbol=> {
+      print(symbols)
+      symbols.foreach(symbol=> {
         StockSeederQuery.insertStockSeeder(symbol,src)
+        finance.App.updateStock(symbol)
       }
       )
     }

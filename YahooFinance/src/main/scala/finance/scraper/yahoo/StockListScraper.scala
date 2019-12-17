@@ -15,7 +15,7 @@ object StockListScraper {
   }
   def getCsv(url: String): List[String] ={
     val bufferedSource = Source.fromFile(url)
-    val symbols = for (line <- bufferedSource.getLines) yield "%s.SI".format(line.split(",")(1))
+    val symbols = for (line <- bufferedSource.getLines) yield "%s".format(line.split(",")(1))
     val list = symbols.toList.drop(1)
     bufferedSource.close
     list

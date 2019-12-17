@@ -31,6 +31,12 @@ object App {
         StockSeeder.updateStockSeeder(input)
       }
 
+
+      StockQuery.getAllStockSeeder().foreach(stock=>
+      {
+        updateStock(stock.symbol)
+      })
+
       /*
 
       val dbaddress = "localhost:5432 postgres admin Data/Listing/SGX.csv"
@@ -43,10 +49,6 @@ object App {
     }
     //updateStock("1A4.SI")
 
-    StockQuery.getAllStockSeeder().foreach(stock=>
-    {
-      updateStock(stock.symbol)
-    })
 
 
   }
