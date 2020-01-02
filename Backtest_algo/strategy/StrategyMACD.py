@@ -2,9 +2,6 @@ from strategy.Strategy import Strategy
 from TA import process_col, name_col
 
 class StrategyMACD(Strategy):
-    def __init__(self):
-        super().__init__()
-        
     def preprocess(self, data):
         self.macd_param_1 = 12
         self.macd_param_2 = 26
@@ -49,16 +46,16 @@ class StrategyMACD(Strategy):
         plot1 = []
         plot2 = []
         plot3 = []
+        plot4 = []
+        plot5 = []
         
-        plot2.append(self.macd)
-        plot2.append(self.macd_signal)
-        plot2.append(self.macd_hist)
+        plot2.append((self.macd,"lines"))
+        plot2.append((self.macd_signal,"lines"))
+        plot2.append((self.macd_hist,"lines"))
         
-        return plot1,plot2,plot3
-
+        return plot1,plot2,plot3,plot4,plot5
 class StrategyMACD1(StrategyMACD):
     def __init__(self):
         self.macd_param_1 = 20
         self.macd_param_2 = 50
         self.macd_param_3 = 5
-        

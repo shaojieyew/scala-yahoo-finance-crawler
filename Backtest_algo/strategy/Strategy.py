@@ -6,7 +6,7 @@ class Strategy:
     def __init__(self):
         super().__init__()
 
-    def get_action(self, data, i, shares_can_buy, shares_can_sell, target, risk_percent, risk_atr_multiplier):
+    def get_action(self, data, i, shares_can_buy, shares_can_sell, cash, target, risk_percent, risk_atr_multiplier):
         pass
     
     def set_stoploss(self, data, i, atr_period = 14, atr_multiplier = 3, early_stop_profit = 0.02, stop_early_times=1, danger_stop_atr=5):
@@ -30,4 +30,3 @@ class Strategy:
 
     def preprocess(self, data):
         pass
-

@@ -11,7 +11,7 @@ def plot_chart(stock_prices, result, stock, strategy):
     # We need this for slicing in the callback below
     data = stock_prices
     df = data.set_index('date')
-    fig = go.FigureWidget(make_subplots(rows=4, cols=1))
+    fig = go.FigureWidget(make_subplots(rows=5, cols=1))
     
     
     
@@ -49,31 +49,47 @@ def plot_chart(stock_prices, result, stock, strategy):
         name = "Long", mode="markers", marker=dict(color="green", size=5)),
         row=1, col=1
     )
-    plot1,plot2,plot3,plot4 = strategy.get_col_to_plot()
+    plot1,plot2,plot3,plot4,plot5 = strategy.get_col_to_plot()
     
-    for p in plot1:
+    for plott in plot1:
+        p = plott[0]
+        marker = plott[1]
         fig.add_trace(
             go.Scattergl(x=list(df.index), y=list(df[p]),
-            name = p),
+            name = p, mode=marker, marker=dict(size=4)),
             row=1, col=1
         )
-    for p in plot2:
+    for plott in plot2:
+        p = plott[0]
+        marker = plott[1]
         fig.add_trace(
             go.Scattergl(x=list(df.index), y=list(df[p]),
-            name = p),
+            name = p, mode=marker, marker=dict(size=4)),
             row=2, col=1
         )
-    for p in plot3:
+    for plott in plot3:
+        p = plott[0]
+        marker = plott[1]
         fig.add_trace(
             go.Scattergl(x=list(df.index), y=list(df[p]),
-            name = p),
+            name = p, mode=marker, marker=dict(size=4)),
             row=3, col=1
         )
-    for p in plot4:
+    for plott in plot4:
+        p = plott[0]
+        marker = plott[1]
         fig.add_trace(
             go.Scattergl(x=list(df.index), y=list(df[p]),
-            name = p),
+            name = p, mode=marker, marker=dict(size=4)),
             row=4, col=1
+        )
+    for plott in plot5:
+        p = plott[0]
+        marker = plott[1]
+        fig.add_trace(
+            go.Scattergl(x=list(df.index), y=list(df[p]),
+            name = p, mode=marker, marker=dict(size=4)),
+            row=5, col=1
         )
     fig.layout.xaxis=dict(
             anchor='x',
@@ -101,16 +117,19 @@ def plot_chart(stock_prices, result, stock, strategy):
             type='date'
         )
     fig.layout.yaxis=dict(
-            domain=[0.53, 1]
+            domain=[0.6, 1]
         )
     fig.layout.yaxis2=dict(
-            domain=[0.35, 0.5]
+            domain=[0.45, 0.59]
         )
     fig.layout.yaxis3=dict(
-            domain=[0.16, 0.34]
+            domain=[0.30, 0.44]
         )
     fig.layout.yaxis4=dict(
-            domain=[0.0, 0.15]
+            domain=[0.15, 0.29]
+        )
+    fig.layout.yaxis5=dict(
+            domain=[0.0, 0.14]
         )
     #fig.layout.yaxis2.range=[0,100]
     #fig.layout.yaxis2.tickvals=[0,20,80,100]
@@ -123,6 +142,7 @@ def plot_chart(stock_prices, result, stock, strategy):
             fig.layout.xaxis2.range = fig.layout.xaxis.range
             fig.layout.xaxis3.range = fig.layout.xaxis.range
             fig.layout.xaxis4.range = fig.layout.xaxis.range
+            fig.layout.xaxis5.range = fig.layout.xaxis.range
             in_view = df.loc[fig.layout.xaxis.range[0]:fig.layout.xaxis.range[1]]
             padding = 0.1
             
@@ -136,24 +156,30 @@ def plot_chart(stock_prices, result, stock, strategy):
             fig.layout.yaxis.range = [min_val_y - (axis_diff*padding), max_val_y + (axis_diff*padding)]
             
             if(len(plot2)>0):
-                max_val_y = in_view[plot2[0]].max()
-                min_val_y =  in_view[plot2[0]].min()
+                max_val_y = in_view[plot2[0][0]].max()
+                min_val_y =  in_view[plot2[0][0]].min()
                 axis_diff = max_val_y-min_val_y
                 fig.layout.yaxis2.range = [min_val_y - (axis_diff*padding), max_val_y + (axis_diff*padding)]
          
             if(len(plot3)>0):
-                max_val_y = in_view[plot3[0]].max()
-                min_val_y =  in_view[plot3[0]].min()
+                max_val_y = in_view[plot3[0][0]].max()
+                min_val_y =  in_view[plot3[0][0]].min()
                 axis_diff = max_val_y-min_val_y
                 fig.layout.yaxis3.range = [min_val_y - (axis_diff*padding), max_val_y + (axis_diff*padding)]
          
             if(len(plot4)>0):
-                max_val_y = in_view[plot4[0]].max()
-                min_val_y =  in_view[plot4[0]].min()
+                max_val_y = in_view[plot4[0][0]].max()
+                min_val_y =  in_view[plot4[0][0]].min()
                 axis_diff = max_val_y-min_val_y
                 fig.layout.yaxis4.range = [min_val_y - (axis_diff*padding), max_val_y + (axis_diff*padding)]
+                
+            if(len(plot5)>0):
+                max_val_y = in_view[plot5[0][0]].max()
+                min_val_y =  in_view[plot5[0][0]].min()
+                axis_diff = max_val_y-min_val_y
+                fig.layout.yaxis5.range = [min_val_y - (axis_diff*padding), max_val_y + (axis_diff*padding)]
          
-            fig['layout'].update(title=stock+" ("+str(round(growth,2))+"%)") 
+            fig['layout'].update(title=symbol+" ("+str(round(growth,2))+"%)") 
         except Exception as e:
             None
     fig.layout.on_change(zoom, 'xaxis')

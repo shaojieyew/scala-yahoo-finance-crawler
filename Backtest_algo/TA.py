@@ -64,15 +64,15 @@ def process_col(data, col="", *argv):
     
     if(col=="ha"):
         data["ha_open"],data["ha_high"],data["ha_low"],data["ha_close"] = HEIKIN_ASHI(data['open'].values, data['high'].values, data['low'].values, data['close'].values)
-    
+
     if(col=="rvi"):
-        data["rvi"],data["rvi_signal"]= RVI(data['high'].values, data['low'].values, data['close'].values, data['open'].values,timeperiod=argv[0])
-    
+        data["rvi_"+params],data["rvi_signal_"+params]= RVI(data['high'].values, data['low'].values, data['close'].values, data['open'].values,timeperiod=argv[0])
+
     if(col=="waddah"):
-        data["waddah_bull"],data["waddah_bear"],data["waddah_explo"],data["waddah_dead"]= WADDAH_ATTAR_EXPLOSION(data['close'].values, sensitive = argv[0] , fast_period= argv[1], slow_period =  argv[2], channel_period =  argv[3], channel_mult =  argv[4], dead_zone= argv[5])
+        data["waddah_bull_"+params],data["waddah_bear_"+params],data["waddah_explo_"+params],data["waddah_dead_"+params]= WADDAH_ATTAR_EXPLOSION(data['close'].values,data['high'].values,data['low'].values, sensitive = argv[0] , fast_period= argv[1], slow_period =  argv[2], channel_period =  argv[3], channel_mult =  argv[4], dead_zone= argv[5])
     
     if(col=="ash"):
-        data["ASH_bull"],data["ASH_bear"]= ASH(data['close'].values, timerperiod=argv[0], smooth =argv[1])
+        data["ASH_bull_"+params],data["ASH_bear_"+params]= ASH(data['close'].values, timerperiod=argv[0], smooth =argv[1])
 
 
 def name_col(col="", *argv):
@@ -373,33 +373,36 @@ def HMA(close, timeperiod=14):
     wma1 = (2*WMA(close, timeperiod = int(timeperiod/2)))-WMA(close, timeperiod = timeperiod)
     return WMA(wma1,timeperiod =int(sqrt_period))
     
-def WADDAH_ATTAR_EXPLOSION(close, sensitive = 150, fast_period=20, slow_period = 40, channel_period = 20, channel_mult = 2, dead_zone=30):
+def WADDAH_ATTAR_EXPLOSION(close, high, low, sensitive = 150, fast_period=20, slow_period = 40, channel_period = 20, channel_mult = 2, dead_zone=30):
     
     from talib import MACD 
     from talib import BBANDS 
+    from talib import ATR 
+    from talib import WMA 
     macd, macdsignal, macdhist = MACD(close, fastperiod=fast_period, slowperiod=slow_period, signalperiod=9)
     upperband, middleband, lowerband = BBANDS(close, timeperiod=channel_period, nbdevup=channel_mult, nbdevdn=channel_mult, matype=0)
 
     ind_trend1 = np.full(len(close), np.nan)
     ind_itrend1 = np.full(len(close), np.nan)
     ind_explo1 = np.full(len(close), np.nan)
-    ind_dead = np.full(len(close), np.nan)
+    tr = WMA(ATR(high, low, close, 20),3)
+    ind_dead = tr*dead_zone / 10
     for i in range(0,len(close)):
         if(i<2):
             continue
         trend1 = (macd[i] - macd[i-1]) * sensitive;
         trend2 = (macd[i-1] - macd[i-2]) * sensitive;
         explo1 = (upperband[i] - lowerband[i])
-        explo2 = (upperband[i-1] - lowerband[i-1])
-        dead = close[i] * dead_zone / 10
-        if(trend1>=0 and macdhist[i]>0):
+        #explo2 = (upperband[i-1] - lowerband[i-1])
+        
+        if(trend1>=0):
             ind_trend1[i]=trend1
             ind_itrend1[i]=0
-        if(trend1<0 and macdhist[i]<0):
+        if(trend1<0):
             ind_trend1[i]=0
             ind_itrend1[i]=(trend1*-1)
         ind_explo1[i] = explo1
-        ind_dead[i] = dead
+        #print(str(i)+"\t "+str(close[i])+"\t "+str(close[i])+"\t "+str(ind_trend1[i])+"\t"+str(ind_itrend1[i]))
     return ind_trend1, ind_itrend1, ind_explo1, ind_dead
 
 
@@ -407,8 +410,8 @@ def ASH(close, timerperiod = 9, smooth = 2):
     from talib import WMA 
     bull = np.full(len(close), np.nan)
     bear = np.full(len(close), np.nan)
-    bull[1:] = 0.5*(abs(close[1:].values-close[:-1].values)+(close[1:].values-close[:-1].values))
-    bear[1:] = 0.5*(abs(close[1:].values-close[:-1].values)-(close[1:].values-close[:-1].values))
+    bull[1:] = 0.5*(abs(close[1:]-close[:-1])+(close[1:]-close[:-1]))
+    bear[1:] = 0.5*(abs(close[1:]-close[:-1])-(close[1:]-close[:-1]))
     
     avgBull = WMA(bull, timerperiod)
     avgBear = WMA(bear, timerperiod)
