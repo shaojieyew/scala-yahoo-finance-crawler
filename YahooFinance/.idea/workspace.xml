@@ -3,62 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="80d7774c-b14b-4173-8b68-22d20904b521" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/App.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/StockRating.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockRating.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/model/StockSeeder.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/finance/scraper/yahoo/StockListScraper.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock_analysis/.ipynb_checkpoints/backtest-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/.ipynb_checkpoints/backtest-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock_analysis/Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/Analysis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stock_analysis/backtest.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/backtest.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/YahooFinance-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/App$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/App$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/Util$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/Util$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/Stock.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/model/StockSeeder$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/Database.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/Database.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockBalanceQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockCashFlowQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockDividendQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockEarningEstimateQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockFinancialStatsQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockIncomeQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockPriceQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$generic$macro$20$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$generic$macro$20$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$macro$12$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery$anon$macro$12$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRatingQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRecommendationQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockRevenueEstimateQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockSeederQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockShareStatsQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/query/StockValuationStatsQuery.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockAnalysisScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockFinanceScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockHistoricalScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockListScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockScraper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockStatsScraper$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/StockStatsScraper$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/test222$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/test222$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/testing$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/finance/scraper/yahoo/testing$.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/target/run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock_analysis/.ipynb_checkpoints/backtest_v3-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/.ipynb_checkpoints/backtest_v3-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock_analysis/backtest_v3.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/backtest_v3.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stock_analysis/report/strategies_testing.csv" beforeDir="false" afterPath="$PROJECT_DIR$/stock_analysis/report/strategies_testing.csv" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

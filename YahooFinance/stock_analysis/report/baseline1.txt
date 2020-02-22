@@ -1,0 +1,5 @@
+strategies_baseline = [StrategyBase_EMASMA_CROSS(7,26),StrategyBase_EMA_CROSS(7,26),
+                       StrategyBase_EMA(20),StrategyBase_SMA(7),
+                       StrategyBase_WADDAH(150,15,26,20,2,30),
+                       StrategyBase_KIJUNSEN(7),
+                       StrategyBase_ASH(14,2), StrategyBase_SSL(7)]
