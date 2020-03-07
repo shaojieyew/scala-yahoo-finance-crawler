@@ -27,10 +27,22 @@ object App {
       if(args.contains("print")){
         print = true
       }
+
+      if(args.contains("-s")){
+        var stocks = args(args.indexOf("-s")+1).toUpperCase()
+        if(stocks.contains(",")){
+          for(stock <- stocks.split(",")){
+            updateStock(stock)
+          }
+        }else{
+          updateStock(stocks)
+        }
+      }
+
+
       if(args.contains("seed")){
         StockSeeder.updateStockSeeder(input)
       }
-
 
       StockQuery.getAllStockSeeder().foreach(stock=>
       {
